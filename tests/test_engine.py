@@ -82,6 +82,9 @@ class EngineTests(unittest.TestCase):
         answer = RAGEngine._normalize_answer_terms("Control 06 applies. Control 06.2 revokes access.")
         self.assertEqual(answer, "Control 06 applies. Safeguard 6.2 revokes access.")
 
+        hidden_reasoning = RAGEngine._normalize_answer_terms("<think>private reasoning</think>Final cited answer [1].")
+        self.assertEqual(hidden_reasoning, "Final cited answer [1].")
+
 
 if __name__ == "__main__":
     unittest.main()

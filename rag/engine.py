@@ -335,26 +335,54 @@ class RAGEngine:
 
         context = "\n\n".join(
             f"[Source {i}, page {source['page']}] {focused(source['text'])}"
-            for i, source in enumerate(sources[:2], 1)
+            for i, source in enumerate(sources[:3], 1)
         )
         prompt = ("Answer only from the supplied CIS Controls context. If it is insufficient, say so. "
+                  "Return only the final answer; do not reveal analysis, reasoning, or planning. "
                   "Be concise and cite claims using [1], [2], etc. Distinguish Controls from Safeguards: "
-                  "a decimal identifier X.Y must be called Safeguard X.Y under Control X, never Control X.Y."
-                  "\n\nContext:\n" + context + "\n\nQuestion: " + question)
-        request = urllib.request.Request(
-            "http://127.0.0.1:11434/api/generate",
-            data=json.dumps({"model": model, "prompt": prompt, "stream": False, "options": {"temperature": 0.1, "num_predict": 800}}).encode(),
-            headers={"Content-Type": "application/json"},
-        )
+                  "a decimal identifier X.Y must be called Safeguard X.Y under Control X, never Control X.Y. "
+                  "Evidence may be distributed across sources: an index source can establish a Control number/title "
+                  "while a body source establishes its overview or importance. Combine such evidence when both are supplied."
+                  "\n\nContext:\n" + context + "\n\nQuestion: " + question + "\n/no_think")
         try:
-            with urllib.request.urlopen(request, timeout=120) as response:
-                return json.loads(response.read())["response"].strip()
-        except (urllib.error.URLError, TimeoutError, KeyError):
+            from ollama import Client
+
+            answer_schema = {
+                "type": "object",
+                "properties": {
+                    "answer": {"type": "string"},
+                    "citations": {
+                        "type": "array",
+                        "items": {"type": "integer", "enum": [1, 2, 3]},
+                        "minItems": 1,
+                        "uniqueItems": True,
+                    },
+                },
+                "required": ["answer", "citations"],
+                "additionalProperties": False,
+            }
+            response = Client(host="http://127.0.0.1:11434", timeout=180).chat(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                think=False,
+                format=answer_schema,
+                options={"temperature": 0.1, "num_predict": 500, "num_ctx": 4096},
+            )
+            payload = json.loads(response.message.content)
+            answer = payload["answer"].strip()
+            citations = [int(value) for value in payload.get("citations", []) if int(value) in (1, 2, 3)]
+            if citations and not re.search(r"\[[123]\]", answer):
+                answer += " " + " ".join(f"[{value}]" for value in citations)
+            return answer
+        except (ImportError, OSError, TimeoutError, KeyError):
             return None
 
     @staticmethod
     def _normalize_answer_terms(answer: str) -> str:
         """Enforce CIS terminology when a generator mislabels X.Y as a Control."""
+        if "</think>" in answer:
+            answer = answer.rsplit("</think>", 1)[1].strip()
+        answer = re.sub(r"<think>.*?</think>", "", answer, flags=re.IGNORECASE | re.DOTALL).strip()
         return re.sub(
             r"\bControl\s+0*(\d+)\.(\d+)\b",
             lambda match: f"Safeguard {int(match.group(1))}.{match.group(2)}",
