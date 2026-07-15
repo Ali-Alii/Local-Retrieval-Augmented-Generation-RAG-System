@@ -70,7 +70,7 @@ uv run python -m rag.exact_pipeline analyze
 uv run python -m rag.exact_pipeline weaviate
 uv run python evaluation/evaluate.py
 uv run python evaluation/compare.py
-uv run python evaluation/deepeval_run.py
+uv run python evaluation/deepeval_run.py --runtime exact --refresh
 uv run python -m unittest discover -v
 ```
 
@@ -84,7 +84,7 @@ Question → BM25 + BGE retrieval → cross-encoder rerank → Qwen3:4b → cite
                                       ↘ golden-set metrics   ↘ local feedback
 ```
 
-DeepEval uses local Qwen3:4b as an offline judge. Across 92 judgments it measured 0.978 answer relevancy, 0.725 faithfulness, 0.715 contextual relevancy, 0.993 contextual precision, 0.956 contextual recall, 0.900 safe abstention, and a 91.3% overall pass rate. See `evaluation/DEEPEVAL_REPORT.md` for interpretation and limitations.
+DeepEval uses local Qwen3:4b as an offline judge. The final exact-stack run completed 92 judgments across 20 golden cases with a **97.83% overall pass rate**: 100% answer relevancy, 94.44% faithfulness, 100% contextual relevancy, 100% contextual precision, 94.44% contextual recall, and 100% safe abstention pass rates. Corresponding metric averages were 0.9722, 0.8620, 0.8541, 1.0000, 0.9259, and 0.9000. Exact cases and raw reasons are stored in `evaluation/deepeval_exact_cases.json` and `evaluation/deepeval_exact_report.json`; the earlier compact report remains a labeled historical baseline. See `evaluation/DEEPEVAL_REPORT.md` for interpretation and limitations.
 
 Key files: `rag/exact_pipeline.py`, `rag/engine.py`, `rag/exact_reranker.py`, `evaluation/questions.json`, `evaluation/evaluate.py`, `evaluation/compare.py`, `evaluation/deepeval_run.py`, and `notebooks/01_RAG_setup.ipynb`.
 

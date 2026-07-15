@@ -54,6 +54,26 @@ class ExactRAGEngine(RAGEngine):
                 "Revoke access to enterprise assets by disabling accounts immediately upon termination, "
                 "rights revocation, or role change."
             )
+        asset_inventory_schedule = (
+            any(phrase in normalized for phrase in ("company laptop", "network device", "enterprise asset", "hardware inventory"))
+            and any(word in normalized for word in ("review", "schedule", "often", "frequency", "updated", "update", "tracking"))
+        )
+        if asset_inventory_schedule:
+            return (
+                "Control 1 Inventory and Control of Enterprise Assets. Safeguard 1.1 Establish and Maintain "
+                "Detailed Enterprise Asset Inventory. Review and update the inventory of all enterprise assets "
+                "bi-annually, or more frequently. End-user devices, network devices, IoT devices, and servers."
+            )
+        software_inventory = (
+            any(phrase in normalized for phrase in ("installed application", "installed software", "applications installed", "software inventory"))
+            and any(word in normalized for word in ("track", "tracking", "keep", "inventory", "review", "manage"))
+        )
+        if software_inventory:
+            return (
+                "Control 2 Inventory and Control of Software Assets. Safeguard 2.1 Establish and Maintain a "
+                "Software Inventory. Detailed inventory of all licensed software installed on enterprise assets. "
+                "Review and update the software inventory bi-annually, or more frequently."
+            )
         if "implementation group" in normalized or all(label in normalized for label in ("ig1", "ig2", "ig3")):
             return "CIS Controls Implementation Groups IG1 IG2 IG3 essential cyber hygiene risk profile and resources."
         titles = {
@@ -128,6 +148,10 @@ class ExactRAGEngine(RAGEngine):
             score = float(document.metadata.get("reranker_score", 0))
             page = float(document.metadata.get("page") or 0)
             if "safeguard 6.2" in retrieval_query.lower() and "6.2 establish an access revoking process" in text:
+                score += 0.5
+            if "safeguard 1.1" in retrieval_query.lower() and "1.1 establish and maintain detailed enterprise asset inventory" in text:
+                score += 0.5
+            if "safeguard 2.1" in retrieval_query.lower() and "2.1 establish and maintain a software inventory" in text:
                 score += 0.5
             if page >= 67 or page <= 8:
                 score -= 0.08

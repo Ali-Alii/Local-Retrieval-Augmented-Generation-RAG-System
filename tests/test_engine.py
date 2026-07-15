@@ -82,6 +82,19 @@ class EngineTests(unittest.TestCase):
         answer = RAGEngine._normalize_answer_terms("Control 06 applies. Control 06.2 revokes access.")
         self.assertEqual(answer, "Control 06 applies. Safeguard 6.2 revokes access.")
 
+        mislabeled = RAGEngine._normalize_answer_terms("The relevant CIS Control is 6.2 Establish an Access Revoking Process.")
+        self.assertEqual(mislabeled, "The relevant CIS Control is 6, Safeguard 6.2 Establish an Access Revoking Process.")
+
+    def test_generation_context_uses_only_three_focused_excerpts(self):
+        engine = object.__new__(RAGEngine)
+        sources = [
+            {"text": "Noise sentence. Review and update the enterprise asset inventory bi-annually, or more frequently.", "page": 19}
+            for _ in range(5)
+        ]
+        contexts = engine.generation_contexts("How often should the enterprise asset inventory be updated?", sources)
+        self.assertEqual(len(contexts), 3)
+        self.assertTrue(all("bi-annually" in context for context in contexts))
+
         hidden_reasoning = RAGEngine._normalize_answer_terms("<think>private reasoning</think>Final cited answer [1].")
         self.assertEqual(hidden_reasoning, "Final cited answer [1].")
 

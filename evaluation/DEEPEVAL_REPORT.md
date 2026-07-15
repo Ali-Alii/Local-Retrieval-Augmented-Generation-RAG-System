@@ -1,5 +1,22 @@
 # DeepEval Evaluation Report
 
+## Final exact-stack evaluation
+
+The final run evaluated the required exact pipeline (Unstructured `hi_res`, title-aware chunks, `BAAI/bge-small-en-v1.5`, Docker Weaviate, `BAAI/bge-reranker-v2-m3`, and Qwen3:4b through Ollama) on the unchanged 20-case golden dataset. It completed 92 judgments with a **97.83% overall pass rate**.
+
+| DeepEval metric | Average | Pass rate |
+|---|---:|---:|
+| Answer Relevancy | 0.9722 | 100.00% |
+| Faithfulness | 0.8620 | 94.44% |
+| Contextual Relevancy | 0.8541 | 100.00% |
+| Contextual Precision | 1.0000 | 100.00% |
+| Contextual Recall | 0.9259 | 94.44% |
+| Safe Abstention | 0.9000 | 100.00% |
+
+The raw exact-stack cases and judge reasons are retained in `deepeval_exact_cases.json` and `deepeval_exact_report.json`. Pass rates and averages are both reported because they answer different questions: the average shows score strength, while the pass rate shows the proportion meeting DeepEval's fixed 0.5 threshold.
+
+## Historical compact baseline
+
 ## Method
 
 - Framework: DeepEval 4.1.0

@@ -33,6 +33,7 @@ from rag.engine import ROOT, RAGEngine
 GOLDENS = ROOT / "evaluation" / "deepeval_goldens.json"
 CASES = ROOT / "evaluation" / "deepeval_cases.json"
 REPORT = ROOT / "evaluation" / "deepeval_report.json"
+EVALUATED_RUNTIME = "compact"
 
 
 class NoThinkingOllamaModel(OllamaModel):
@@ -78,7 +79,9 @@ def prepare_cases(engine: RAGEngine, goldens: list[dict], refresh: bool = False)
         row = {
             **golden,
             "actual_output": result["answer"],
-            "retrieval_context": [source["text"] for source in result["sources"]],
+            # Evaluate the sentence-focused evidence actually supplied to Qwen,
+            # not full storage chunks or extra UI-only citations.
+            "retrieval_context": engine.generation_contexts(question, result["sources"]),
             "retrieved_pages": [source["page"] for source in result["sources"]],
             "answer_mode": result["mode"],
             "answer_latency_ms": result["latency_ms"],
@@ -126,7 +129,7 @@ def summarize(results: list[dict]) -> dict:
     return {
         "cases": len(results),
         "judge": "qwen3:4b via local Ollama",
-        "evaluated_runtime": "compact",
+        "evaluated_runtime": EVALUATED_RUNTIME,
         "threshold": 0.5,
         "metric_averages": {name: round(mean(values), 4) for name, values in scores.items()},
         "metric_pass_rates": {
@@ -138,9 +141,17 @@ def summarize(results: list[dict]) -> dict:
     }
 
 
-def run(limit: int | None, refresh: bool) -> dict:
+def run(limit: int | None, refresh: bool, runtime: str = "exact") -> dict:
+    global CASES, REPORT, EVALUATED_RUNTIME
+    EVALUATED_RUNTIME = runtime
+    if runtime == "exact":
+        CASES = ROOT / "evaluation" / "deepeval_exact_cases.json"
+        REPORT = ROOT / "evaluation" / "deepeval_exact_report.json"
+        from rag.exact_runtime import ExactRAGEngine
+        engine = ExactRAGEngine()
+    else:
+        engine = RAGEngine()
     goldens = read_json(GOLDENS, [])[:limit]
-    engine = RAGEngine()
     cases = prepare_cases(engine, goldens, refresh)
     previous = {} if refresh else {row["question"]: row for row in read_json(REPORT, {}).get("results", [])}
     judge = NoThinkingOllamaModel(model="qwen3:4b", base_url="http://127.0.0.1:11434", temperature=0, timeout=300)
@@ -186,6 +197,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, help="Evaluate only the first N goldens (useful for a smoke test).")
     parser.add_argument("--refresh", action="store_true", help="Regenerate answers and rerun completed metrics.")
+    parser.add_argument("--runtime", choices=("exact", "compact"), default="exact",
+                        help="Pipeline to generate and evaluate (default: exact assignment stack).")
     args = parser.parse_args()
-    final = run(args.limit, args.refresh)
+    final = run(args.limit, args.refresh, args.runtime)
     print(json.dumps(final["summary"], indent=2))

@@ -311,8 +311,8 @@ class RAGEngine:
         relevant = [(score, chunk) for score, chunk in reranked if score >= best - 12.0 and score > 0][:min(candidates, top_k)]
         return [{"id": c.id, "text": c.text, "source": c.source, "page": c.page, "score": round(score, 4)} for score, c in relevant]
 
-    def _ollama(self, question: str, sources: list[dict]) -> str | None:
-        model = os.getenv("OLLAMA_MODEL", "qwen3:4b")
+    def generation_contexts(self, question: str, sources: list[dict]) -> list[str]:
+        """Return the sentence-focused evidence actually supplied to the generator."""
         normalized = question.lower()
         focus_terms = set(_tokens(question)) - QUESTION_STOPWORDS
         if "implementation group" in normalized or all(label in normalized for label in ("ig1", "ig2", "ig3")):
@@ -333,11 +333,18 @@ class RAGEngine:
             excerpt = " ".join(sentence for _, _, sentence in selected)
             return excerpt[:2200] if excerpt else text[:1400]
 
+        return [focused(source["text"]) for source in sources[:3]]
+
+    def _ollama(self, question: str, sources: list[dict]) -> str | None:
+        model = os.getenv("OLLAMA_MODEL", "qwen3:4b")
+        excerpts = self.generation_contexts(question, sources)
         context = "\n\n".join(
-            f"[Source {i}, page {source['page']}] {focused(source['text'])}"
-            for i, source in enumerate(sources[:3], 1)
+            f"[Source {i}, page {source['page']}] {excerpt}"
+            for i, (source, excerpt) in enumerate(zip(sources[:3], excerpts), 1)
         )
         prompt = ("Answer only from the supplied CIS Controls context. If it is insufficient, say so. "
+                  "Every factual statement in the answer must be directly entailed by the context; omit any claim "
+                  "that is not explicitly supported. Do not add background knowledge, assumptions, or advice. "
                   "Return only the final answer; do not reveal analysis, reasoning, or planning. "
                   "Be concise and cite claims using [1], [2], etc. Distinguish Controls from Safeguards: "
                   "a decimal identifier X.Y must be called Safeguard X.Y under Control X, never Control X.Y. "
@@ -383,6 +390,12 @@ class RAGEngine:
         if "</think>" in answer:
             answer = answer.rsplit("</think>", 1)[1].strip()
         answer = re.sub(r"<think>.*?</think>", "", answer, flags=re.IGNORECASE | re.DOTALL).strip()
+        answer = re.sub(
+            r"\b(?:the\s+)?(?:relevant\s+)?CIS\s+Control\s+is\s+0*(\d+)\.(\d+)\b",
+            lambda match: f"The relevant CIS Control is {int(match.group(1))}, Safeguard {int(match.group(1))}.{match.group(2)}",
+            answer,
+            flags=re.IGNORECASE,
+        )
         return re.sub(
             r"\bControl\s+0*(\d+)\.(\d+)\b",
             lambda match: f"Safeguard {int(match.group(1))}.{match.group(2)}",

@@ -33,6 +33,10 @@ class ExactPipelineTests(unittest.TestCase):
         self.assertIn("Inventory and Control of Enterprise Assets", control)
         contractor = ExactRAGEngine._retrieval_query("A contractor left but their account still works.")
         self.assertIn("Safeguard 6.2", contractor)
+        assets = ExactRAGEngine._retrieval_query("What review schedule does CIS recommend for tracking company laptops and network devices?")
+        self.assertIn("Safeguard 1.1", assets)
+        software = ExactRAGEngine._retrieval_query("How does CIS recommend keeping track of installed applications?")
+        self.assertIn("Safeguard 2.1", software)
 
 
 if __name__ == "__main__":

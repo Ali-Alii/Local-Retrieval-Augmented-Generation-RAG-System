@@ -1,0 +1,364 @@
+[
+  {
+    "question": "What is the purpose of CIS Control 1?",
+    "reference_answer": "CIS Control 1, Inventory and Control of Enterprise Assets, requires actively inventorying, tracking, and correcting enterprise assets so unauthorized and unmanaged assets can be identified and remediated.",
+    "actual_output": "To actively manage (inventory, track, and correct) all enterprise assets (end-user devices, including portable and mobile; network devices; non-computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure physically, virtually, remotely, and those within cloud environments, to accurately know the totality of assets that need to be monitored and protected within the enterprise. This will also support identifying unauthorized and unmanaged assets to remove or remediate. [1] [2] [3]",
+    "retrieval_context": [
+      "OVERVIEW Actively manage (inventory, track, and correct) all enterprise assets (end-user devices, including portable and mobile; network devices; non-computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure physically, virtually, remotely, and those within cloud environments, to accurately know the totality of assets that need to be monitored and protected within the enterprise. This will also support identifying unauthorized and unmanaged assets to remove or remediate.",
+      "Why is this Control critical? Enterprises cannot defend what they do not know they have. Managed control of all enterprise assets also plays a critical role in security monitoring, incident response, system backup, and recovery. Enterprises should know what data is critical to them, and proper asset management will help identify those enterprise assets that hold or manage this critical data, so that appropriate security controls can be applied. External attackers are continuously scanning the internet address space of target enterprises, premise-based or in the cloud, identifying possibly unprotected assets attached to an enterprise’s network. However, attackers have shown the ability, patience, and willingness to “inventory and control” our enterprise assets at very large scale in order to support their opportunities.",
+      "Controls and Safeguards Index Control 01 / Safeguard 1.1 — Control 02 / Safeguard 2.3 CONTROL SAFEGUARD NUMBER TITLE/ DESCRIPTION ASSET TYPE SECURITY FUNCTION | IG1 | IG2 | IG3 01 Inventory and Control of Enterprise Assets Actively manage (inventory, track, and correct) all enterprise assets (end-user devices, including portable and mobile; network devices; non- computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure physically, virtually, remotely, and those within cloud environments, to accurately know the totality of assets that need to be monitored and protected within the enterprise. This will also support identifying unauthorized and unmanaged assets to remove or remediate."
+    ],
+    "retrieved_pages": [
+      17,
+      17,
+      69,
+      69,
+      69
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 31098
+  },
+  {
+    "question": "What are the three Implementation Groups?",
+    "reference_answer": "IG1 is essential cyber hygiene for organizations with limited security expertise; IG2 includes IG1 and adds safeguards for organizations with dedicated IT responsibilities and sensitive data; IG3 includes IG1 and IG2 and is intended for organizations with security experts, critical services, or greater targeted-attack and regulatory risk.",
+    "actual_output": "IG1, IG2, IG3 [1] [2] [3]",
+    "retrieval_context": [
+      "Structure of the CIS Controls The presentation of each Control in this document includes the following elements: 4 Introduction CIS Controls v8 Implementation Groups | SENTIA! “it @ ESSENTIAL vice» ESSENTIAL vic CIS Controls v8 • Overview. A brief description of the intent of the Control and its utility as a defensive action • Why is this Control critical? A more technical description of the processes and technologies that enable implementation and automation of this Control • Safeguard descriptions. A table of the specific actions that enterprises should take to implement the Control IG1 An IG1 enterprise is small to medium-sized with limited IT and cybersecurity expertise to dedicate towards protecting IT assets and personnel. Safeguards selected for IG1 should be implementable with limited cybersecurity expertise and aimed to thwart general, non-targeted attacks.",
+      "IG2 (Includes IG1) An IG2 enterprise employs individuals responsible for managing and protecting IT infrastructure. These enterprises support multiple departments with differing risk profiles based on job function and mission. Small enterprise units may have regulatory compliance burdens. IG2 enterprises often store and process sensitive client or enterprise information and can withstand short interruptions of service. A major concern is loss of public confidence if a breach occurs. Safeguards selected for IG2 help security teams cope with increased operational complexity.",
+      "IG3 (Includes IG1 and IG2) An IG3 enterprise employs security experts that specialize in the different facets of cybersecurity (e.g., risk management, penetration testing, application security). IG3 assets and data contain sensitive information or functions that are subject to regulatory and compliance oversight. An IG3 enterprise must address availability of services and the confidentiality and integrity of sensitive data. Successful attacks can cause significant harm to the public welfare. Safeguards selected for IG3 must abate targeted attacks from a sophisticated adversary and reduce the impact of zero-day attacks. Introduction 5"
+    ],
+    "retrieved_pages": [
+      14,
+      15,
+      15,
+      14,
+      45
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 7798
+  },
+  {
+    "question": "How often should the enterprise asset inventory be updated?",
+    "reference_answer": "The enterprise asset inventory should be reviewed and updated bi-annually, or more frequently.",
+    "actual_output": "The enterprise asset inventory should be updated bi-annually, or more frequently. [1] [2]",
+    "retrieval_context": [
+      "Control 01: Inventory and Control of Enterprise Assets CIS Controls v8 Safeguards CIS Controls v8 NUMBER TITLE/DESCRIPTION Establish and Maintain Detailed Enterprise Asset Inventory | | | |__vevices | GED [elele| • • • Establish and maintain an accurate, detailed, and up-to-date inventory of all enterprise assets with the potential to store or process data, to include: end-user devices (including portable and mobile), network devices, non- computing/IoT devices, and servers. Ensure the inventory records the network address (if static), hardware address, machine name, enterprise asset owner, department for each asset, and whether the asset has been approved to connect to the network. This inventory includes assets connected to the infrastructure physically, virtually, remotely, and those within cloud environments. Additionally, it includes assets that are regularly connected to the enterprise’s network infrastructure, even if they are not under control of the enterprise. Review and update the inventory of all enterprise assets bi-annually, or more frequently. 1.4 Use Dynamic Host Configuration Protocol (DHCP) Logging to Update Enterprise Asset Inventory",
+      "OVERVIEW Actively manage (inventory, track, and correct) all enterprise assets (end-user devices, including portable and mobile; network devices; non-computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure physically, virtually, remotely, and those within cloud environments, to accurately know the totality of assets that need to be monitored and protected within the enterprise. This will also support identifying unauthorized and unmanaged assets to remove or remediate.",
+      "Controls and Safeguards Index Control 01 / Safeguard 1.1 — Control 02 / Safeguard 2.3 CONTROL SAFEGUARD NUMBER TITLE/ DESCRIPTION ASSET TYPE SECURITY FUNCTION | IG1 | IG2 | IG3 01 Inventory and Control of Enterprise Assets Actively manage (inventory, track, and correct) all enterprise assets (end-user devices, including portable and mobile; network devices; non- computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure physically, virtually, remotely, and those within cloud environments, to accurately know the totality of assets that need to be monitored and protected within the enterprise. This will also support identifying unauthorized and unmanaged assets to remove or remediate."
+    ],
+    "retrieved_pages": [
+      18,
+      17,
+      69,
+      16,
+      69
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 12695
+  },
+  {
+    "question": "Why should default accounts be managed?",
+    "reference_answer": "Default accounts should be disabled or made unusable because known default credentials and unnecessary accounts can give attackers access to enterprise systems.",
+    "actual_output": "Default accounts on enterprise assets and software, such as root, administrator, and other pre-configured vendor accounts, are exploitable if left in their default state. [1] They are common in default configurations, which are often not set up by default in the most secure configuration to provide flexibility for their customers to apply their own security policies. [1] The presence of default accounts or passwords, excessive access, or unnecessary services are common in default configurations. [1] Managing default accounts can include disabling default accounts or making them unusable. [2]",
+    "retrieval_context": [
+      "OVERVIEW Establish and maintain the secure configuration of enterprise assets (end-user devices, including portable and mobile; network devices; non-computing/IoT devices; and servers) and software (operating systems and applications). As delivered from manufacturers and resellers, the default configurations for enterprise assets and software are normally geared towards ease-of-deployment and ease-of- use rather than security. Basic controls, open services and ports, default accounts or passwords, pre-configured Domain Name System (DNS) settings, older (vulnerable) protocols, and pre-installation of unnecessary software can all be exploitable if left in their default state. Further, these security configuration updates need to be managed and maintained over the life cycle of enterprise assets and software. They often are not set up by default in the most secure configuration to provide flexibility for their customers to apply their own security policies. Therefore, the presence of default accounts or passwords, excessive access, or unnecessary services are common in default configurations.",
+      "4.7 Manage Default Accounts on Enterprise Assets and Software Users -Protect- • • • Manage default accounts on enterprise assets and software, such as root, administrator, and other pre-configured vendor accounts. Example implementations can include: disabling default accounts or making them unusable. A6 Controls and Safeguards Index CIS Controls v8 |",
+      "4.6 Securely Manage Enterprise Assets and Software Network Grup Network • • • Securely manage enterprise assets and software. Example implementations include managing configuration through version-controlled-infrastructure-as-code and accessing administrative interfaces over secure network protocols, such as Secure Shell (SSH) and Hypertext Transfer Protocol Secure (HTTPS). Do not use insecure management protocols, such as Telnet (Teletype Network) and HTTP, unless operationally essential. 4.7 Manage Default Accounts on Enterprise Assets and Software • • • | uses | GEEEED [elele| Manage default accounts on enterprise assets and software, such as root, administrator, and other pre-configured vendor accounts. Example implementations can include: disabling default accounts or making them unusable. • • 4.8 Uninstall or Disable Unnecessary Services on Enterprise Assets and Software Devices -Protect- Uninstall or disable unnecessary services on enterprise assets and software, such as an unused file sharing service, web application module, or service function."
+    ],
+    "retrieved_pages": [
+      26,
+      71,
+      28,
+      30,
+      31
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 13268
+  },
+  {
+    "question": "What does continuous vulnerability management aim to do?",
+    "reference_answer": "Continuous Vulnerability Management aims to continuously assess and track vulnerabilities so they can be prioritized and remediated before attackers exploit them.",
+    "actual_output": "Continuous vulnerability management aims to continuously assess and track vulnerabilities on all enterprise assets within the enterprise’s infrastructure, in order to remediate, and minimize the window of opportunity for attackers. [1] [2]",
+    "retrieval_context": [
+      "6.7 Centralize Access Control Users Users | t Protect ] | • • Centralize access control for all enterprise assets through a directory service or SSO provider, where supported. 6.8 Define and Maintain Role-Based Access Control Data Data | t Protect ] | • Define and maintain role-based access control, through determining and documenting the access rights necessary for each role within the enterprise to successfully carry out its assigned duties. Perform access control reviews of enterprise assets to validate that all privileges are authorized, on a recurring schedule at a minimum annually, or more frequently. 07 Continuous Vulnerability Management Develop a plan to continuously assess and track vulnerabilities on all enterprise assets within the enterprise’s infrastructure, in order to remediate, and minimize, the window of opportunity for attackers. Monitor public and private industry sources for new threat and vulnerability information. 7.1 Establish and Maintain a Vulnerability Management Process Applications | @ENED • • • Establish and maintain a documented vulnerability management process for enterprise assets.",
+      "OVERVIEW Develop a plan to continuously assess and track vulnerabilities on all enterprise assets within the enterprise’s infrastructure, in order to remediate, and minimize, the window of opportunity for attackers. Monitor public and private industry sources for new threat and vulnerability information.",
+      "Enterprises that do not assess their infrastructure for vulnerabilities and proactively address discovered flaws face a significant likelihood of having their enterprise assets compromised. Defenders face particular challenges in scaling remediation across an entire enterprise, and prioritizing actions with conflicting priorities, while not impacting the enterprise’s business or mission. CIS Controls v8 Control 07: Continuous Vulnerability Management 23"
+    ],
+    "retrieved_pages": [
+      73,
+      33,
+      33,
+      34,
+      35
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 11234
+  },
+  {
+    "question": "What review schedule does CIS recommend for tracking company laptops and network devices?",
+    "reference_answer": "Company laptops and network devices are enterprise assets, so their inventory should be reviewed and updated bi-annually, or more frequently.",
+    "actual_output": "The CIS recommends reviewing the enterprise asset inventory bi-annually, or more frequently. [1]",
+    "retrieval_context": [
+      "Control 01: Inventory and Control of Enterprise Assets CIS Controls v8 Safeguards CIS Controls v8 NUMBER TITLE/DESCRIPTION Establish and Maintain Detailed Enterprise Asset Inventory | | | |__vevices | GED [elele| • • • Establish and maintain an accurate, detailed, and up-to-date inventory of all enterprise assets with the potential to store or process data, to include: end-user devices (including portable and mobile), network devices, non- computing/IoT devices, and servers. Ensure the inventory records the network address (if static), hardware address, machine name, enterprise asset owner, department for each asset, and whether the asset has been approved to connect to the network. Additionally, it includes assets that are regularly connected to the enterprise’s network infrastructure, even if they are not under control of the enterprise. Review and update the inventory of all enterprise assets bi-annually, or more frequently. 1.3 Utilize an Active Discovery Tool Devices Devices t Detect ] • • Utilize an active discovery tool to identify assets connected to the enterprise’s network. 1.4 Use Dynamic Host Configuration Protocol (DHCP) Logging to Update Enterprise Asset Inventory",
+      "OVERVIEW Actively manage (inventory, track, and correct) all enterprise assets (end-user devices, including portable and mobile; network devices; non-computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure physically, virtually, remotely, and those within cloud environments, to accurately know the totality of assets that need to be monitored and protected within the enterprise. This will also support identifying unauthorized and unmanaged assets to remove or remediate.",
+      "Controls and Safeguards Index Control 01 / Safeguard 1.1 — Control 02 / Safeguard 2.3 CONTROL SAFEGUARD NUMBER TITLE/ DESCRIPTION ASSET TYPE SECURITY FUNCTION | IG1 | IG2 | IG3 01 Inventory and Control of Enterprise Assets Actively manage (inventory, track, and correct) all enterprise assets (end-user devices, including portable and mobile; network devices; non- computing/Internet of Things (IoT) devices; and servers) connected to the infrastructure physically, virtually, remotely, and those within cloud environments, to accurately know the totality of assets that need to be monitored and protected within the enterprise. This will also support identifying unauthorized and unmanaged assets to remove or remediate."
+    ],
+    "retrieved_pages": [
+      18,
+      17,
+      69,
+      16,
+      69
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 12947
+  },
+  {
+    "question": "Someone left our company but can still log in. What action should security take?",
+    "reference_answer": "Under Control 6, Safeguard 6.2, security should follow the access-revocation process and disable the account immediately upon termination.",
+    "actual_output": "The security team should revoke access to enterprise assets for the user who left the company, following the process established in 6.2 Establish an Access Revoking Process [1].",
+    "retrieval_context": [
+      "6.1 Establish an Access Granting Process Users Users Grr • • • Establish and follow a process, preferably automated, for granting access to enterprise assets upon new hire, rights grant, or role change of a user. 6.2 Establish an Access Revoking Process Users GD • • • Establish and follow a process, preferably automated, for revoking access to enterprise assets, through disabling accounts immediately upon termination, rights revocation, or role change of a user. Disabling accounts, instead of deleting accounts, may be necessary to preserve audit trails.",
+      "For additional security in system administration, using “jump-boxes” or out of band terminal connections is recommended. Many enterprises have repeatable consistent processes for removing access when employees leave the enterprise. Enterprises should also inventory and track service accounts, as a common error is leaving clear text tokens or passwords in code, and posting to public cloud-based code repositories. Administrators should have separate accounts that do not have elevated privileges for daily office use, and should log into administrator accounts only when performing administrator functions requiring that level of authorization. nist.gov/800-63-3/ NUMBER TITLE/DESCRIPTION ASSET TYPE SECURITY FUNCTION IG1 | IG2 | IG3 6.1 _ Establish an Access Granting Process Users -Protect- • • • Establish and follow a process, preferably automated, for granting access to enterprise assets upon new hire, rights grant, or role change of a user. 6.2 Establish an Access Revoking Process",
+      "Access Control Management"
+    ],
+    "retrieved_pages": [
+      73,
+      32,
+      31,
+      31,
+      72
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 11107
+  },
+  {
+    "question": "How should organizations protect records of security events?",
+    "reference_answer": "Organizations should establish an audit log management process and collect, alert on, review, and retain audit logs from enterprise assets.",
+    "actual_output": "Organizations should collect, alert, review, and retain audit logs of events that could help detect, understand, or recover from an attack. [1]",
+    "retrieval_context": [
+      "OVERVIEW Collect, alert, review, and retain audit logs of events that could help detect, understand, or recover from an attack. Sometimes audit records are the only evidence of a successful attack. System logs typically provide system-level events that show various system process start/end times, crashes, etc. Audit logs typically include user-level events—when a user logged in, accessed a file, etc.—and take more planning and effort to set up. Logging records are also critical for incident response. Complete logging records can show, for example, when and how the attack occurred, what information was accessed, and if data was exfiltrated.",
+      "17.3 Establish and Maintain an Enterprise Process for Reporting Incidents • • • | na | Grp [elele| Establish and maintain an enterprise process for the workforce to report security incidents. The process includes reporting timeframe, personnel to report to, mechanism for reporting, and the minimum information to be reported. Ensure the process is publicly available to all of the workforce. Review annually, or when significant enterprise changes occur that could impact this Safeguard.",
+      "OVERVIEW Establish and maintain data recovery practices sufficient to restore in-scope enterprise assets to a pre-incident and trusted state. Why is this Control critical? In the cybersecurity triad—Confidentiality, Integrity, and Availability (CIA)—the availability of data is, in some cases, more critical than its confidentiality. Enterprises need many types of data to make business decisions, and when that data is not available or is untrusted, then it could impact the enterprise. An easy example is weather information to a transportation enterprise. Configuration changes can include adding or changing registry entries, opening ports, turning off security services, deleting logs, or other malicious actions that make a system insecure."
+    ],
+    "retrieved_pages": [
+      36,
+      61,
+      42,
+      46,
+      80
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 11024
+  },
+  {
+    "question": "How does CIS recommend keeping track of installed applications?",
+    "reference_answer": "Establish and maintain a detailed software inventory covering licensed software installed on enterprise assets, and review it bi-annually or more frequently.",
+    "actual_output": "CIS recommends keeping track of installed applications by establishing and maintaining a detailed inventory of all licensed software installed on enterprise assets. This inventory must document the title, publisher, initial install/use date, and business purpose for each entry; where appropriate, include the Uniform Resource Locator (URL), app store(s), version(s), deployment mechanism, and decommission date. Review and update the software inventory bi-annually, or more frequently. [1]",
+    "retrieval_context": [
+      "Safeguards 12 NUMBER TITLE/DESCRIPTION 2.1 Establish and Maintain a Software Inventory | | | | Applications | @FSD lelele| • • • Establish and maintain a detailed inventory of all licensed software installed on enterprise assets. The software inventory must document the title, publisher, initial install/use date, and business purpose for each entry; where appropriate, include the Uniform Resource Locator (URL), app store(s), version(s), deployment mechanism, and decommission date. Review and update the software inventory bi-annually, or more frequently.",
+      "Inventory and Control of Software Assets",
+      "Why is this Control critical? A complete software inventory is a critical foundation for preventing attacks. Attackers continuously scan target enterprises looking for vulnerable versions of software that can be remotely exploited. For example, if a user opens a malicious website or attachment with a vulnerable browser, an attacker can often install backdoor programs and bots that give the attacker long-term control of the system. Attackers can also use this access to move laterally through the network. For example, an enterprise asset may come installed with default software that creates a potential security risk and provides no benefit to the enterprise."
+    ],
+    "retrieved_pages": [
+      22,
+      20,
+      20,
+      69,
+      69
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 13840
+  },
+  {
+    "question": "Which control addresses weaknesses before attackers exploit them?",
+    "reference_answer": "CIS Control 7, Continuous Vulnerability Management, addresses vulnerabilities by continuously assessing, tracking, prioritizing, and remediating weaknesses before attackers exploit them.",
+    "actual_output": "Safeguard 1.1 [1]",
+    "retrieval_context": [
+      "Why is this Control critical? Cyber defenders are constantly being challenged from attackers who are looking for vulnerabilities within their infrastructure to exploit and gain access. Defenders must have timely threat information available to them about: software updates, patches, security advisories, threat bulletins, etc., and they should regularly review their environment to identify these vulnerabilities before the attackers do. Attackers have access to the same information and can often take advantage of vulnerabilities more quickly than an enterprise can remediate. Attackers might be using an exploit to a vulnerability that is not known within the security community. They might have developed an exploit to this vulnerability referred to as a “zero-day” exploit.",
+      "OVERVIEW Test the effectiveness and resiliency of enterprise assets through identifying and exploiting weaknesses in controls (people, processes, and technology), and simulating the objectives and actions of an attacker. Why is this Control critical? A successful defensive posture requires a comprehensive program of effective policies and governance, strong technical defenses, combined with appropriate action from people. It may include social engineering of users, or physical access control bypasses. Often, penetration tests are performed for specific purposes: • As a “dramatic” demonstration of an attack, usually to convince decision-makers of their enterprise’s weaknesses • As a means to test the correct operation of enterprise defenses (“verification”) • To test that the enterprise has built the right defenses in the first place (“validation”) Independent penetration testing can provide valuable and objective insights about the existence of vulnerabilities in enterprise assets and humans, and the efficacy of defenses and mitigating controls to protect against adverse impacts to the enterprise. They can also reveal process weaknesses, such as incomplete or inconsistent configuration management, or end-user training.",
+      "OVERVIEW Establish, implement, and actively manage (track, report, correct) network devices, in order to prevent attackers from exploiting vulnerable network services and access points. Why is this Control critical? Secure network infrastructure is an essential defense against attacks. Attackers search for vulnerable default settings, gaps or inconsistencies in firewall rule sets, routers, and switches and use those holes to penetrate defenses. They exploit flaws in these devices to gain access to networks, redirect traffic on a network, and intercept data while in transmission. Attackers take advantage of network device configurations becoming less secure over time as users demand exceptions for specific business needs."
+    ],
+    "retrieved_pages": [
+      33,
+      63,
+      44,
+      56,
+      55
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 11292
+  },
+  {
+    "question": "What should we do when an unauthorized device appears on the network?",
+    "reference_answer": "Follow Control 1 safeguards to identify the unauthorized asset and remove it from the network, deny it remote access, or quarantine it.",
+    "actual_output": "Ensure that a process exists to address unauthorized assets on a weekly basis. The enterprise may choose to remove the asset from the network, deny the asset from connecting remotely to the network, or quarantine the asset. [1]",
+    "retrieval_context": [
+      "1.2 Address Unauthorized Assets | Devices _| -Respond- • • • le Ensure that a process exists to address unauthorized assets on a weekly basis. The enterprise may choose to remove the asset from the network, deny the asset from connecting remotely to the network, or quarantine the asset. 1.3 Utilize an Active Discovery Tool Devices Devices | . Detect ] | • • Utilize an active discovery tool to identify assets connected to the enterprise’s network. Configure the active discovery tool to execute daily, or more frequently. 1.4 Use Dynamic Host Configuration Protocol (DHCP) Logging to Update Enterprise Asset Inventory Devices -Identify- • • Use DHCP logging on all DHCP servers or Internet Protocol (IP) address management tools to update the enterprise’s asset inventory.",
+      "OVERVIEW Actively manage (inventory, track, and correct) all software (operating systems and applications) on the network so that only authorized software is installed and can execute, and that unauthorized and unmanaged software is found and prevented from installation or execution.",
+      "OVERVIEW Establish, implement, and actively manage (track, report, correct) network devices, in order to prevent attackers from exploiting vulnerable network services and access points. Secure network infrastructure is an essential defense against attacks. Network infrastructure includes devices such as physical and virtualized gateways, firewalls, wireless access points, routers, and switches. Default configurations for network devices are geared for ease-of-deployment and ease-of-use—not security. They exploit flaws in these devices to gain access to networks, redirect traffic on a network, and intercept data while in transmission. Attackers take advantage of network device configurations becoming less secure over time as users demand exceptions for specific business needs."
+    ],
+    "retrieved_pages": [
+      69,
+      20,
+      44,
+      48,
+      71
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 10438
+  },
+  {
+    "question": "What does CIS recommend for defending systems against malware?",
+    "reference_answer": "Control 10 recommends deploying and maintaining anti-malware software, automatically updating signatures, disabling autorun and autoplay, and centrally managing anti-malware defenses where appropriate.",
+    "actual_output": "CIS recommends that enterprises implement effective malware protection through traditional endpoint malware prevention and detection suites, receive automated updates from vendors to enrich vulnerability or threat data, and centrally manage these tools to ensure consistency across infrastructure. Additionally, CIS emphasizes the importance of centrally collecting logs to support alerting, identification, and incident response, as well as enabling logging per Safeguards in CIS Control 8. [1] [2]",
+    "retrieval_context": [
+      "Procedures and tools Effective malware protection includes traditional endpoint malware prevention and detection suites. To ensure malware IOCs are up-to-date, enterprises can receive automated updates from the vendor to enrich other vulnerability or threat data. These tools are best managed centrally to provide consistency across the infrastructure. Being able to block or identify malware is only part of this CIS Control; there is also a focus on centrally collecting the logs to support alerting, identification, and incident response. Enabling logging, as per the Safeguards in CIS Control 8, will make it significantly easier for the enterprise to follow the events to understand what happened and why it happened. 30 Control 10: Malware Defenses CIS Controls v8",
+      "CIS Controls v8 Introduction 1 CIS has recently released the Community Defense Model (CDM), which is our most data-driven approach so far. This allows us to analyze the value of individual defensive actions (i.e., Safeguards1) against those attacks. The details of this analysis are available on the CIS website. The bottom line is that we have taken a major step towards identifying the security value of the CIS Controls, or any subset of them. While these ideas are still evolving, at CIS we are committed to the idea of security recommendations based on data, presented transparently. These activities ensure that the CIS Security Best Practices (which include the CIS Controls and CIS Benchmarks) are more than a checklist of “good things to do,” or “things that could help”; instead, they are a prescriptive, prioritized, highly focused set of actions that have a community support network to make them implementable, usable, scalable, and in alignment with all industry or government security requirements.",
+      "There has been an exponential rise in ransomware over the last few years. It is not a new threat, though it has become more commercialized and organized as a reliable method for attackers to make money. If an attacker encrypts an enterprise’s data and demands ransom for its restoration, having a recent backup to recover to a known, trusted state can be helpful. In this case, restoration would only solve the issue of restoring systems to a trusted state and continuing operations. Leveraging the guidance within the CIS Controls will help reduce the risk of ransomware through improved cyber hygiene, as attackers usually use older or basic exploits on insecure systems. 32 Control 11: Data Recovery CIS Controls v8"
+    ],
+    "retrieved_pages": [
+      40,
+      11,
+      42,
+      81,
+      38
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 12361
+  },
+  {
+    "question": "How should an enterprise prepare to recover its data after an incident?",
+    "reference_answer": "The enterprise should establish and maintain a data recovery process, perform automated backups, protect recovery data, keep an isolated copy, and test restoration regularly.",
+    "actual_output": "An enterprise should establish and maintain data recovery practices sufficient to restore in-scope enterprise assets to a pre-incident and trusted state [2].",
+    "retrieval_context": [
+      "Incident Response Management SAFEGUARDS TOTAL• 9 IG1• 3/9 IG2• 8/9 IG3• 9/9 OVERVIEW Establish a program to develop and maintain an incident response capability (e.g., policies, plans, procedures, defined roles, training, and communications) to prepare, detect, and quickly respond to an attack. Why is this Control critical? The primary goal of incident response is to identify threats on the enterprise, respond to them before they can spread, and remediate them before they can cause harm. Without understanding the full scope of an incident, how it happened, and what can be done to prevent it from happening again, defenders will just be in a perpetual “whack-a-mole” pattern. When an incident occurs, if an enterprise does not have a documented plan—even with good people—it is almost impossible to know the right investigative procedures, reporting, data collection, management responsibility, legal protocols, and communications strategy that will allow the enterprise to successfully understand, manage, and recover. If we are to reduce the probability of material impact due to a cyber event, the enterprise’s leadership must know what potential impact there could be, so that they can help prioritize remediation or restoration decisions that best support the enterprise.",
+      "OVERVIEW Establish and maintain data recovery practices sufficient to restore in-scope enterprise assets to a pre-incident and trusted state. Why is this Control critical? In the cybersecurity triad—Confidentiality, Integrity, and Availability (CIA)—the availability of data is, in some cases, more critical than its confidentiality. Enterprises need many types of data to make business decisions, and when that data is not available or is untrusted, then it could impact the enterprise. An easy example is weather information to a transportation enterprise. Therefore, it is important to have an ability to have recent backups or mirrors to recover enterprise assets and data back to a known trusted state.",
+      "• • • | Designate one key person, and at least one backup, who will manage the enterprise’s incident handling process. Management personnel are responsible for the coordination and documentation of incident response and recovery efforts and can consist of employees internal to the enterprise, third-party vendors, or a hybrid approach. If using a third-party vendor, designate at least one person internal to the enterprise to oversee any third-party work. Review annually, or when significant enterprise changes occur that could impact this Safeguard."
+    ],
+    "retrieved_pages": [
+      60,
+      42,
+      61,
+      76,
+      62
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 11065
+  },
+  {
+    "question": "What is the purpose of an incident response process?",
+    "reference_answer": "An incident response process defines roles, responsibilities, communications, and procedures so the enterprise can detect, respond to, and recover from incidents consistently.",
+    "actual_output": "The purpose of an incident response process is to identify threats on the enterprise, respond to them before they can spread, and remediate them before they can cause harm. [1]",
+    "retrieval_context": [
+      "Incident Response Management SAFEGUARDS TOTAL• 9 IG1• 3/9 IG2• 8/9 IG3• 9/9 OVERVIEW Establish a program to develop and maintain an incident response capability (e.g., policies, plans, procedures, defined roles, training, and communications) to prepare, detect, and quickly respond to an attack. A comprehensive cybersecurity program includes protections, detections, response, and recovery capabilities. Often, the final two get overlooked in immature enterprises, or the response technique to compromised systems is just to re-image them to original state, and move on. The primary goal of incident response is to identify threats on the enterprise, respond to them before they can spread, and remediate them before they can cause harm. Without understanding the full scope of an incident, how it happened, and what can be done to prevent it from happening again, defenders will just be in a perpetual “whack-a-mole” pattern. When an incident occurs, if an enterprise does not have a documented plan—even with good people—it is almost impossible to know the right investigative procedures, reporting, data collection, management responsibility, legal protocols, and communications strategy that will allow the enterprise to successfully understand, manage, and recover.",
+      "Control 17: Incident Response Management 51 52 NUMBER TITLE/DESCRIPTION |__assertyee | secuniryruncrion | ici | 162 | 16a | 17.4 Establish and Maintain an Incident Response Process N/A -Respond- • • Establish and maintain an incident response process that addresses roles and responsibilities, compliance requirements, and a communication plan. Review annually, or when significant enterprise changes occur that could impact this Safeguard.",
+      "Procedures and tools Safeguards CIS Controls v8 Even if an enterprise does not have resources to conduct incident response within an enterprise, it is still critical to have a plan. After defining incident response procedures, the incident response team, or a third- party, should engage in periodic scenario-based training, working through a series of attack scenarios fine-tuned to the threats and potential impacts the enterprise faces. These scenarios help ensure that enterprise leadership and technical team members understand their role in the incident response process to help prepare them to handle incidents. More mature enterprises should include threat intelligence and/or threat hunting into their incident response process. This will help focus detections and define response procedures to identify and remediate more quickly. The actions in CIS Control 17 provide specific, high-priority steps that can improve enterprise security, and should be a part of any comprehensive incident and response plan."
+    ],
+    "retrieved_pages": [
+      60,
+      61,
+      61,
+      80,
+      62
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 11691
+  },
+  {
+    "question": "How should third-party service providers be managed?",
+    "reference_answer": "Establish and maintain an inventory of service providers, classify them, define security requirements in agreements, assess them, and monitor them appropriately.",
+    "actual_output": "Third-party service providers should be managed through a policy that includes an inventory of vendors, a risk rating associated with their potential impact to the business in case of an incident, and secure decommissioning when contracts are completed or terminated. This management process should be supported by third-party assessment platforms that provide a central view of the industry and dynamic risk scores based on passive technical assessments or enriched through other firms' third-party assessments. Additionally, third-parties with managed security service contracts or cybersecurity insurance can help with risk reduction. Enterprises should also review the security of third-parties to ensure compliance with regulations such as HIPAA Business Associate agreements, FFIEC requirements, and U.K. Cyber Essentials, and ensure that risks are managed within the enterprise to avoid transferring risks to entities outside the enterprise. [1] [2] [3]",
+    "retrieval_context": [
+      "Often, this process is managed through spreadsheets; however, there are online platforms now that allow central management of this process. No matter what the enterprise’s size, there should be a policy about reviewing service providers, an inventory of these vendors, and a risk rating associated with their potential impact to the business in case of an incident. There are third-party assessment platforms that have an inventory of thousands of service providers, which attempt to provide a central view of the industry, to help enterprises make more informed risk decisions. These platforms often have a dynamic risk score for service providers, based (usually) on passive technical assessments, or enriched through other firms’ third-party assessments. A third-party that has a managed security service contract, or retainer, and holds cybersecurity insurance, can also help with risk reduction. It is also important to securely decommission service providers when contracts are completed or terminated.",
+      "In our modern, connected world, enterprises rely on vendors and partners to help manage their data or rely on third-party infrastructure for core applications or functions. There have been numerous examples where third-party breaches have significantly impacted an enterprise; for example, as early as the late 2000s, payment cards were compromised after attackers infiltrated smaller third-party vendors in the retail industry. More recent examples include ransomware attacks that impact an enterprise indirectly, due to one of their service providers being locked down, causing disruption to business. Most data security and privacy regulations require their protection extend to third-party service providers, such as with Health Insurance Portability and Accountability Act (HIPAA) Business Associate agreements in healthcare, Federal Financial Institutions Examination Council (FFIEC) requirements for the financial industry, and the United Kingdom (U.K.) Cyber Essentials. Third-party trust is a core Governance Risk and Compliance (GRC) function, as risks that are not managed within the enterprise are transferred to entities outside the enterprise. While reviewing the security of third-parties has been a task performed for decades, there is not a universal standard for assessing security; and, many service providers are being audited by their customers multiple times a month, causing impacts to their own productivity.",
+      "While an enterprise might put a lot of scrutiny into large cloud or application hosting companies because they are hosting their email or critical business applications, smaller firms are often a greater risk. Often times, a third-party service provider contracts with additional parties to provide other plugins or services, such as when a third-party uses a fourth-party platform or product to support the main enterprise. 42 Control 15: Service Provider Management CIS Controls v8"
+    ],
+    "retrieved_pages": [
+      53,
+      52,
+      52,
+      52,
+      78
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 14061
+  },
+  {
+    "question": "How can an organization detect unusual network activity?",
+    "reference_answer": "Use network monitoring and defense capabilities to collect and analyze traffic, flows, and patterns so anomalies and potentially malicious activity can be detected.",
+    "actual_output": "By collecting and analyzing audit logs, which can help detect malicious activity quickly. [1] [3]",
+    "retrieval_context": [
+      "8.2 Collect Audit Logs | Network Network | -Detect- • • • Collect audit logs. Ensure that logging, per the enterprise’s audit log management process, has been enabled across enterprise assets. 8.3 Ensure Adequate Audit Log Storage Network Grup • • • Ensure that logging destinations maintain adequate storage to comply with the enterprise’s audit log management process. 8.4 Standardize Time Synchronization Network -Protect- • • Standardize time synchronization. 8.5 Collect Detailed Audit Logs Network Network t Detect ] • • Configure detailed audit logging for enterprise assets containing sensitive data. 8.6 Collect DNS Query Audit Logs Network , Detect ] • • Collect DNS query audit logs on enterprise assets, where appropriate and supported.",
+      "OVERVIEW Operate processes and tooling to establish and maintain comprehensive network monitoring and defense against security threats across the enterprise’s network infrastructure and user base. Why is this Control critical? We cannot rely on network defenses to be perfect. Security tools can only be effective if they are supporting a process of continuous monitoring that allows staff the ability to be alerted and respond to security incidents quickly. It is critical for large or heavily targeted enterprises to have a security operations capability to prevent, detect, and quickly respond to cyber threats before they can impact the enterprise. This process will generate activity reports and metrics that will help enhance security policies, and support regulatory compliance for many enterprises.",
+      "OVERVIEW Collect, alert, review, and retain audit logs of events that could help detect, understand, or recover from an attack. Why is this Control critical? Log collection and analysis is critical for an enterprise’s ability to detect malicious activity quickly. Sometimes audit records are the only evidence of a successful attack. After an attack has been detected, log analysis can help enterprises understand the extent of an attack. Complete logging records can show, for example, when and how the attack occurred, what information was accessed, and if data was exfiltrated."
+    ],
+    "retrieved_pages": [
+      37,
+      46,
+      36,
+      37,
+      74
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 10952
+  },
+  {
+    "question": "How should email and web browsers be protected?",
+    "reference_answer": "Use supported browsers and email clients, DNS and URL filtering, anti-malware protections, appropriate browser and email controls, and user awareness to reduce email and web threats.",
+    "actual_output": "Email and web browsers should be protected by implementing DMARC policy and verification, blocking unnecessary file types at the email gateway, and deploying and maintaining email server anti-malware protections such as attachment scanning and/or sandboxing. [3]",
+    "retrieval_context": [
+      "Email and Web Browser Protections SAFEGUARDS TOTAL• 7 IG1• 2/7 IG2• 6/7 IG3• 7/7 OVERVIEW Improve protections and detections of threats from email and web vectors, as these are opportunities for attackers to manipulate human behavior through direct engagement. Why is this Control critical? Web browsers and email clients are very common points of entry for attackers because of their direct interaction with users inside an enterprise. Content can be crafted to entice or spoof users into disclosing credentials, providing sensitive data, or providing an open channel to allow attackers to gain access, thus increasing risk to the enterprise. Since email and web are the main means that users interact with external and untrusted users and environments, these are prime targets for both malicious code and social engineering. Additionally, as enterprises move to web-based email, or mobile email access, users no longer use traditional full-featured email clients, which provide embedded security controls like connection encryption, strong authentication, and phishing reporting buttons.",
+      "28 Control 09: Email and Web Browser Protections CIS Controls v8 Safeguards CIS Controls v8 Email Email represents one the most interactive ways humans work with enterprise assets; training and encouraging the right behavior is just as important as the technical settings. Email is the most common threat vector against enterprises through tactics such as phishing and Business Email Compromise (BEC). Using a spam-filtering tool and malware scanning at the email gateway reduces the number of malicious emails and attachments that come into the enterprise’s network. Installing an encryption tool to secure email and communications adds another layer of user and network-based security. This will require coordination with different business units to understand what types of files they receive via email to ensure that there is not an interruption to their processes. Since phishing email techniques are ever evolving to get past Something Posing as Mail (SPAM) filter rules, it is important to train users on how to identify phishing, and to notify IT Security when they see one.",
+      "9.5 Implement DMARC | Network —_| t Protect ] • • | To lower the chance of spoofed or modified emails from valid domains, implement DMARC policy and verification, starting with implementing the Sender Policy Framework (SPF) and the DomainKeys Identified Mail (DKIM) standards. 9.6 Block Unnecessary File Types Network t Protect ] • • Block unnecessary file types attempting to enter the enterprise’s email gateway. 9.7 Deploy and Maintain Email Server Anti-Malware Protections Network Network t Protect ] • Deploy and maintain email server anti-malware protections, such as attachment scanning and/or sandboxing. Control 09: Email and Web Browser Protections 29 CONTROL 10"
+    ],
+    "retrieved_pages": [
+      38,
+      38,
+      39,
+      75,
+      38
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 11007
+  },
+  {
+    "question": "Why is security awareness training necessary?",
+    "reference_answer": "Security awareness training helps personnel recognize and respond to social engineering, authentication, data handling, and other human-focused security risks.",
+    "actual_output": "Security awareness training is necessary because the actions of people play a critical part in the success or failure of an enterprise’s security program. No security program can effectively address cyber risk without a means to address this fundamental human vulnerability. The training should be updated regularly to increase the culture of security and discourage risky workarounds. [1] [2]",
+    "retrieval_context": [
+      "OVERVIEW Establish and maintain a security awareness program to influence behavior among the workforce to be security conscious and properly skilled to reduce cybersecurity risks to the enterprise. Why is this Control critical? The actions of people play a critical part in the success or failure of an enterprise’s security program. No security program can effectively address cyber risk without a means to address this fundamental human vulnerability. The training should be updated regularly. This will increase the culture of security and discourage risky workarounds.",
+      "• • • 14.1 Establish and maintain a security awareness program. The purpose of a security awareness program is to educate the enterprise’s workforce on how to interact with enterprise assets and data in a secure manner. Conduct training at hire and, at a minimum, annually. Review and update content annually, or when significant enterprise changes occur that could impact this Safeguard. 14.2 Train Workforce Members to Recognize Social Engineering Attacks N/A Grup • • • Train workforce members to recognize social engineering attacks, such as phishing, pre-texting, and tailgating.",
+      "Procedures and tools An effective security awareness training program should not just be a canned, once- a-year training video coupled with regular phishing testing. While annual training is needed, there should also be more frequent, topical messages and notifications about security. This might include messages about: strong password-use that coincides with a media report of password dump, the rise of phishing during tax time, or increased awareness of malicious package delivery emails during the holidays. Training should also consider the enterprise’s different regulatory and threat posture. Financial firms might have more compliance-related training on data handling and use, healthcare enterprises on handling healthcare data, and merchants for credit card data. CIS Controls v8 Control 14: Security Awareness and Skills Training 39"
+    ],
+    "retrieved_pages": [
+      49,
+      50,
+      49,
+      77,
+      49
+    ],
+    "answer_mode": "ollama",
+    "answer_latency_ms": 12411
+  },
+  {
+    "question": "According to this document, what was the most common cyberattack in Lebanon in 2026?",
+    "reference_answer": "The indexed CIS Controls document does not contain evidence about the most common cyberattack in Lebanon in 2026, so the system should abstain and provide no source citations.",
+    "expect_abstain": true,
+    "actual_output": "The indexed CIS Controls document does not contain enough evidence to answer that question. I won't infer or invent information beyond the provided source.",
+    "retrieval_context": [],
+    "retrieved_pages": [],
+    "answer_mode": "insufficient-evidence",
+    "answer_latency_ms": 0
+  },
+  {
+    "question": "What is the current price of Bitcoin?",
+    "reference_answer": "The indexed CIS Controls document does not provide live Bitcoin prices, so the system should abstain and provide no source citations.",
+    "expect_abstain": true,
+    "actual_output": "The indexed CIS Controls document does not contain enough evidence to answer that question. I won't infer or invent information beyond the provided source.",
+    "retrieval_context": [],
+    "retrieved_pages": [],
+    "answer_mode": "insufficient-evidence",
+    "answer_latency_ms": 0
+  }
+]

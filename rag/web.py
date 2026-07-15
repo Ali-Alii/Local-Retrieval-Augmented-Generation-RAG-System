@@ -37,7 +37,8 @@ class Handler(SimpleHTTPRequestHandler):
         if path == "/api/evaluation":
             report_path = ROOT / "evaluation" / "latest_report.json"
             comparison_path = ROOT / "evaluation" / "comparison_report.json"
-            deepeval_path = ROOT / "evaluation" / "deepeval_report.json"
+            exact_path = ROOT / "evaluation" / "deepeval_exact_report.json"
+            deepeval_path = exact_path if exact_path.exists() else ROOT / "evaluation" / "deepeval_report.json"
             report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
             comparison = json.loads(comparison_path.read_text(encoding="utf-8")) if comparison_path.exists() else {}
             deepeval = json.loads(deepeval_path.read_text(encoding="utf-8")) if deepeval_path.exists() else {}
