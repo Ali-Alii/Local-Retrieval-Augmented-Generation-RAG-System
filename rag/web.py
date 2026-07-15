@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
+import os
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -11,7 +12,7 @@ from .engine import RAGEngine
 
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = ROOT / "static"
-ENGINE = RAGEngine()
+ENGINE = None
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -71,9 +72,17 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 def run():
+    global ENGINE
     parser = argparse.ArgumentParser(description="Run the private CIS Controls RAG workspace")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument("--runtime", choices=("exact", "compact"), default=os.getenv("RAG_RUNTIME", "exact"), help="exact uses Weaviate+BGE reranker; compact restores the fast JSON+MiniLM runtime")
     args = parser.parse_args()
-    print(f"\n  CIS Controls Intelligence: http://{args.host}:{args.port}\n")
+    if args.runtime == "exact":
+        from .exact_runtime import ExactRAGEngine
+
+        ENGINE = ExactRAGEngine()
+    else:
+        ENGINE = RAGEngine()
+    print(f"\n  CIS Controls Intelligence: http://{args.host}:{args.port} [{args.runtime}]\n")
     ThreadingHTTPServer((args.host, args.port), Handler).serve_forever()

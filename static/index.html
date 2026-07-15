@@ -30,7 +30,7 @@
         <div class="suggestions"><button>What is CIS Control 1?</button><button>How should accounts be managed?</button><button>Explain Implementation Groups</button></div>
       </section>
       <section id="answer" class="answer hidden"><div class="answer-head"><span>GROUNDED RESPONSE</span><b id="mode"></b></div><div id="answerText"></div><div id="sources" class="sources"></div><div class="feedback"><span>Was this useful?</span><button data-rating="up">↑</button><button data-rating="down">↓</button><small id="latency"></small></div></section>
-      <section class="metrics"><div><span>DOCUMENTS</span><strong id="documents">—</strong><small>local sources</small></div><div><span>KNOWLEDGE CHUNKS</span><strong id="chunks">—</strong><small>searchable passages</small></div><div><span>PIPELINE</span><strong>2-stage</strong><small>retrieve + rerank</small></div></section>
+      <section class="metrics"><div><span>DOCUMENTS</span><strong id="documents">—</strong><small>local sources</small></div><div><span>KNOWLEDGE CHUNKS</span><strong id="chunks">—</strong><small>searchable passages</small></div><div><span>RUNTIME</span><strong id="runtime">—</strong><small id="pipeline">retrieve + rerank</small></div></section>
     </main>
   </div>
   <dialog id="indexDialog"><button class="close">×</button><span class="eyebrow">KNOWLEDGE BASE</span><h2>Index your local documents</h2><p>Sentinel scans supported files in <code>data/</code>, chunks them with overlap, and only rebuilds when a source changes.</p><button id="ingest" class="primary">Build / sync index</button><pre id="ingestResult"></pre></dialog>
