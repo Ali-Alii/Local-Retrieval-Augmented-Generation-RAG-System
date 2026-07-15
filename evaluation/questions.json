@@ -1,0 +1,22 @@
+[
+  {"question":"What is the purpose of CIS Control 1?","expected_terms":["enterprise assets","inventory","manage"],"expected_pages":[17,18,19]},
+  {"question":"What are the three Implementation Groups?","expected_terms":["IG1","IG2","IG3"],"expected_pages":[14,15]},
+  {"question":"How often should the enterprise asset inventory be updated?","expected_terms":["bi-annually","more frequently"],"expected_pages":[19]},
+  {"question":"Why should default accounts be managed?","expected_terms":["default accounts","disable","unusable"],"expected_pages":[26,28,44]},
+  {"question":"What does continuous vulnerability management aim to do?","expected_terms":["vulnerabilities","remediate","attackers"],"expected_pages":[33,34,35]},
+  {"question":"What review schedule does CIS recommend for tracking company laptops and network devices?","expected_terms":["bi-annually","enterprise assets"],"expected_pages":[19]},
+  {"question":"Someone left our company but can still log in. What action should security take?","expected_terms":["disabling accounts","immediately upon termination"],"expected_pages":[32]},
+  {"question":"How should organizations protect records of security events?","expected_terms":["audit logs","collect"],"expected_pages":[36,37]},
+  {"question":"How does CIS recommend keeping track of installed applications?","expected_terms":["software inventory","licensed software"],"expected_pages":[20,21,22]},
+  {"question":"Which control addresses weaknesses before attackers exploit them?","expected_terms":["vulnerabilities","remediate"],"expected_pages":[33,34,35]},
+  {"question":"What should we do when an unauthorized device appears on the network?","expected_terms":["unauthorized assets","remove","quarantine"],"expected_pages":[19]},
+  {"question":"What does CIS recommend for defending systems against malware?","expected_terms":["anti-malware","software","signature"],"expected_pages":[40,41]},
+  {"question":"How should an enterprise prepare to recover its data after an incident?","expected_terms":["data recovery","backups","restore"],"expected_pages":[42,43]},
+  {"question":"What is the purpose of an incident response process?","expected_terms":["incident response","roles","communications"],"expected_pages":[60,61,62]},
+  {"question":"How should third-party service providers be managed?","expected_terms":["service providers","inventory","assess"],"expected_pages":[53,54]},
+  {"question":"How can an organization detect unusual network activity?","expected_terms":["network monitoring","traffic","anomalies"],"expected_pages":[46,47]},
+  {"question":"How should email and web browsers be protected?","expected_terms":["email","web browsers","filtering"],"expected_pages":[38,39]},
+  {"question":"Why is security awareness training necessary?","expected_terms":["security awareness","training","social engineering"],"expected_pages":[50,51,52]},
+  {"question":"According to this document, what was the most common cyberattack in Lebanon in 2026?","expected_terms":["does not contain enough evidence"],"expected_pages":[],"expect_abstain":true},
+  {"question":"What is the current price of Bitcoin?","expected_terms":["does not contain enough evidence"],"expected_pages":[],"expect_abstain":true}
+]

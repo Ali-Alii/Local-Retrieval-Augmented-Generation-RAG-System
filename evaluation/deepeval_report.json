@@ -1,0 +1,771 @@
+{
+  "summary": {
+    "cases": 20,
+    "judge": "qwen3:4b via local Ollama",
+    "threshold": 0.5,
+    "metric_averages": {
+      "answer_relevancy": 0.9782,
+      "faithfulness": 0.725,
+      "contextual_relevancy": 0.7152,
+      "contextual_precision": 0.9926,
+      "contextual_recall": 0.9556,
+      "safe_abstention": 0.9
+    },
+    "metric_pass_rates": {
+      "answer_relevancy": 1,
+      "faithfulness": 0.7778,
+      "contextual_relevancy": 0.8333,
+      "contextual_precision": 1,
+      "contextual_recall": 0.9444,
+      "safe_abstention": 1
+    },
+    "overall_metric_pass_rate": 0.913,
+    "completed_metric_runs": 92
+  },
+  "results": [
+    {
+      "question": "What is the purpose of CIS Control 1?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the response is perfectly relevant with no irrelevant content.",
+          "threshold": 0.5,
+          "elapsed_seconds": 294.85
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 33.31
+        },
+        "contextual_relevancy": {
+          "score": 0.8378378378378378,
+          "passed": true,
+          "reason": "The score is 0.84 because the retrieval context provides detailed explanations of CIS Control 1's implementation and criticality but lacks direct statements on its purpose, as the input specifically asks for the purpose of CIS Control 1.",
+          "threshold": 0.5,
+          "elapsed_seconds": 68.83
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all three nodes are relevant and ranked correctly, with the 'yes' verdicts appearing first and providing clear explanations of CIS Control 1's purpose without any irrelevant nodes.",
+          "threshold": 0.5,
+          "elapsed_seconds": 26.81
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the 1st node in retrieval context fully aligns with the expected output sentence by explicitly detailing how active inventory and tracking of enterprise assets (including end-user devices, network devices, IoT devices, and servers) enables identification and remediation of unauthorized/unmanaged assets.",
+          "threshold": 0.5,
+          "elapsed_seconds": 25.42
+        }
+      }
+    },
+    {
+      "question": "What are the three Implementation Groups?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it perfectly addresses the input question about the three Implementation Groups.",
+          "threshold": 0.5,
+          "elapsed_seconds": 21.99
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 38.27
+        },
+        "contextual_relevancy": {
+          "score": 0.4444444444444444,
+          "passed": false,
+          "reason": "The score is 0.44 because the retrieval context includes relevant statements about Implementation Groups (IG1, IG2, IG3) but the majority of the context focuses on CIS Controls v8 descriptions that are not directly addressing the three Implementation Groups, making the relevance moderate.",
+          "threshold": 0.5,
+          "elapsed_seconds": 47.71
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all three nodes are ranked correctly with 'yes' verdicts, meaning all relevant nodes are prioritized before any irrelevant nodes.",
+          "threshold": 0.5,
+          "elapsed_seconds": 17.29
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the 1st, 2nd, and 3rd nodes in retrieval context precisely align with the expected output's IG1, IG2, and IG3 definitions, respectively, with no unsupportive reasons present.",
+          "threshold": 0.5,
+          "elapsed_seconds": 15.79
+        }
+      }
+    },
+    {
+      "question": "How often should the enterprise asset inventory be updated?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it's fully relevant to the input question about enterprise asset inventory update frequency.",
+          "threshold": 0.5,
+          "elapsed_seconds": 25.38
+        },
+        "faithfulness": {
+          "score": 0.5,
+          "passed": true,
+          "reason": "The score is 0.50 because the actual output contradicts the retrieval context on inventory update frequency: Safeguard 1.4 claims weekly updates, but the context specifies bi-annual updates per Safeguard 1.1, with Safeguard 1.2's weekly action unrelated to inventory frequency.",
+          "threshold": 0.5,
+          "elapsed_seconds": 28.12
+        },
+        "contextual_relevancy": {
+          "score": 0.6666666666666666,
+          "passed": true,
+          "reason": "The score is 0.67 because the retrieval context mentions updating the inventory bi-annually or weekly (relevant statements), but the input focuses on enterprise asset inventory update frequency, while the context discusses unauthorized assets and discovery tools (irrelevant points).",
+          "threshold": 0.5,
+          "elapsed_seconds": 20.88
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the only relevant node (rank 1) provides a direct answer to the input question, and there are no irrelevant nodes to rank higher than it.",
+          "threshold": 0.5,
+          "elapsed_seconds": 18.53
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence (1) is fully supported by node 1 in retrieval context, which explicitly states the bi-annual review and update requirement for enterprise assets.",
+          "threshold": 0.5,
+          "elapsed_seconds": 23.38
+        }
+      }
+    },
+    {
+      "question": "Why should default accounts be managed?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it's fully relevant to the input question about default account management.",
+          "threshold": 0.5,
+          "elapsed_seconds": 18.91
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 28.21
+        },
+        "contextual_relevancy": {
+          "score": 0.7671232876712328,
+          "passed": true,
+          "reason": "The score is 0.77 because the retrieval context provides relevant statements about default accounts being exploitable due to insecure configurations (e.g., 'Basic controls, open services and ports, default accounts or passwords... can all be exploitable if left in their default state') and the need to manage default accounts (e.g., 'Manage default accounts on enterprise assets and software... Example implementations can include: disabling default accounts or making them unusable'), but the majority of the context focuses on broader security controls like network infrastructure, session locking, and firewall management that do not directly address the specific question about why default accounts should be managed.",
+          "threshold": 0.5,
+          "elapsed_seconds": 98.75
+        },
+        "contextual_precision": {
+          "score": 0.9166666666666666,
+          "passed": true,
+          "reason": "The score is 0.92 because the first four nodes are relevant (ranked higher) as they directly address default account management, while the last two nodes are irrelevant and ranked lower. Specifically, the third node (rank 3) and fifth node (rank 5) have 'no' verdicts due to not addressing default accounts, which should be ranked below relevant nodes.",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.0
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output's 1st sentence aligns perfectly with the 1st node's mention of default accounts as exploitable, the 2nd sentence matches the 2nd node's automatic logout feature, the 3rd sentence corresponds to the 3rd node's default vulnerabilities, and the 4th sentence directly supports the 4th node's example of disabling default accounts.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.84
+        }
+      }
+    },
+    {
+      "question": "What does continuous vulnerability management aim to do?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it perfectly addresses the input question about continuous vulnerability management.",
+          "threshold": 0.5,
+          "elapsed_seconds": 7.44
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.4
+        },
+        "contextual_relevancy": {
+          "score": 0.6376811594202898,
+          "passed": true,
+          "reason": "The score is 0.64 because the retrieval context includes relevant statements about continuous vulnerability management processes (e.g., 'Develop a plan to continuously assess and track vulnerabilities...') but lacks direct explanations of what continuous vulnerability management aims to achieve, as noted in the irrelevancy reasons.",
+          "threshold": 0.5,
+          "elapsed_seconds": 73.15
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes (1-4) are ranked higher than irrelevant nodes (5), ensuring the top-ranked nodes directly address continuous vulnerability management through assessment, tracking, and remediation.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.97
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the 1st node in retrieval context fully supports the expected output sentence by detailing how continuous vulnerability management works to prioritize and remediate vulnerabilities before exploitation.",
+          "threshold": 0.5,
+          "elapsed_seconds": 7.72
+        }
+      }
+    },
+    {
+      "question": "What review schedule does CIS recommend for tracking company laptops and network devices?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it perfectly addresses the input question about CIS review schedules for company laptops and network devices.",
+          "threshold": 0.5,
+          "elapsed_seconds": 9.48
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.39
+        },
+        "contextual_relevancy": {
+          "score": 0.16666666666666666,
+          "passed": false,
+          "reason": "The score is 0.17 because the retrieval context mentions inventory update frequencies (bi-annually) but does not specify a review schedule for tracking company laptops and network devices, as the input requires.",
+          "threshold": 0.5,
+          "elapsed_seconds": 18.08
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the only 'yes' node (rank 1) correctly addresses the question with a specific bi-annual review schedule for enterprise assets, while the 'no' node (rank 2) provides irrelevant information about general inventory processes without specifying the review schedule for laptops and network devices.",
+          "threshold": 0.5,
+          "elapsed_seconds": 8.29
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output's sentence (1) aligns perfectly with the 1st node in retrieval context, which specifies reviewing enterprise assets bi-annually.",
+          "threshold": 0.5,
+          "elapsed_seconds": 6.3
+        }
+      }
+    },
+    {
+      "question": "Someone left our company but can still log in. What action should security take?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it's fully relevant to the input question about security actions for a company user who can still log in.",
+          "threshold": 0.5,
+          "elapsed_seconds": 7.2
+        },
+        "faithfulness": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because there are no contradictions to justify a lower faithfulness score.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.58
+        },
+        "contextual_relevancy": {
+          "score": 0.2222222222222222,
+          "passed": false,
+          "reason": "The score is 0.22 because the retrieval context contains relevant statements about account de-provisioning processes (e.g., 'Comprehensive account de-provisioning is important', 'Many enterprises have repeatable consistent processes for removing access when employees leave the enterprise') but the majority of the context focuses on unrelated security controls like MFA, access management, and inventory systems that do not address the specific issue of someone leaving the company but still being able to log in.",
+          "threshold": 0.5,
+          "elapsed_seconds": 38.43
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all five nodes are relevant and ranked correctly, with each 'yes' verdict providing specific, actionable security steps for de-provisioning accounts upon termination, ensuring the highest priority for addressing the input issue.",
+          "threshold": 0.5,
+          "elapsed_seconds": 11.39
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence aligns perfectly with node 6.2 in the retrieval context, which specifies establishing an automated access revoking process for immediate account disablement upon termination.",
+          "threshold": 0.5,
+          "elapsed_seconds": 6.26
+        }
+      }
+    },
+    {
+      "question": "How should organizations protect records of security events?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 0.8571428571428571,
+          "passed": true,
+          "reason": "The score is 0.86 because the output mentions a reference [1] that isn't provided in the input and doesn't address how organizations should protect records of security events, preventing the score from being higher.",
+          "threshold": 0.5,
+          "elapsed_seconds": 9.76
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.72
+        },
+        "contextual_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the retrieval context directly addresses how organizations should protect security event records through detailed CIS Controls v8 guidelines on audit log management, including specific actions like collecting, reviewing, retaining, and centralizing logs, which perfectly aligns with the input's query.",
+          "threshold": 0.5,
+          "elapsed_seconds": 37.06
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes (ranked 1st, 2nd, and 3rd) have 'yes' verdicts, meaning they directly support the input query without any irrelevant nodes appearing before them.",
+          "threshold": 0.5,
+          "elapsed_seconds": 9.71
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the 1st node in retrieval context fully supports the expected output sentence by detailing the audit log management process requirements including collection, review, and retention of logs for enterprise assets.",
+          "threshold": 0.5,
+          "elapsed_seconds": 6.75
+        }
+      }
+    },
+    {
+      "question": "How does CIS recommend keeping track of installed applications?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it perfectly addresses the input question about CIS recommendations for tracking installed applications.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.67
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.77
+        },
+        "contextual_relevancy": {
+          "score": 0.8918918918918919,
+          "passed": true,
+          "reason": "The score is 0.89 because the retrieval context provides relevant statements about software inventory and control (e.g., 'Establish and maintain a detailed inventory of all licensed software', 'Utilize software inventory tools to automate discovery', 'CIS Controls v810 Control 02: Inventory and Control of Software Assets') but excludes cloud, tablet, IoT, and ICS guidance which are irrelevant to the input question about tracking installed applications.",
+          "threshold": 0.5,
+          "elapsed_seconds": 42.4
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes (rank 1 and 2) correctly address the input's query about CIS recommendations for tracking installed applications, while the irrelevant node (rank 3) fails to specifically focus on the practice of tracking installed applications, thus maintaining perfect ranking order.",
+          "threshold": 0.5,
+          "elapsed_seconds": 11.83
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output's 1st and 2nd sentences perfectly align with the retrieval context's 1st and 2nd nodes, respectively, ensuring full contextual coverage.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.24
+        }
+      }
+    },
+    {
+      "question": "Which control addresses weaknesses before attackers exploit them?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because the output provides a relevant answer to the question about controls that address weaknesses before exploitation, but the score isn't higher due to the absence of any irrelevant statements in the output. This indicates strong relevance with minor room for improvement in precision or completeness.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.18
+        },
+        "faithfulness": {
+          "score": 0.6666666666666666,
+          "passed": true,
+          "reason": "The score is 0.67 because the retrieval context explicitly states that CIS Controls v8 includes a security life cycle control for application software that prevents, detects, and remediates vulnerabilities, directly contradicting the claim that cyber defenders face constant challenges from attackers exploiting vulnerabilities. This indicates the actual output misrepresents how vulnerabilities are handled, reducing faithfulness.",
+          "threshold": 0.5,
+          "elapsed_seconds": 23.13
+        },
+        "contextual_relevancy": {
+          "score": 0.6741573033707865,
+          "passed": true,
+          "reason": "The score is 0.67 because the retrieval context contains relevant statements about continuous vulnerability management and network security controls that address weaknesses before attackers exploit them, but most of the context focuses on application vulnerabilities, penetration testing, and unrelated security concepts, making it only partially relevant.",
+          "threshold": 0.5,
+          "elapsed_seconds": 120.87
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the only relevant node (rank 1) directly addresses the question by explaining continuous vulnerability management and remediation before exploitation, while all irrelevant nodes (ranks 2-5) discuss unrelated CIS controls that do not cover continuous vulnerability management.",
+          "threshold": 0.5,
+          "elapsed_seconds": 16.86
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence (1) aligns perfectly with the 1st node in retrieval context, which explicitly details CIS Control 7's continuous vulnerability management process and its implementation requirements.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.18
+        }
+      }
+    },
+    {
+      "question": "What should we do when an unauthorized device appears on the network?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it perfectly addresses the input question about handling unauthorized network devices.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.1
+        },
+        "faithfulness": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because there are no contradictions to justify a lower faithfulness score.",
+          "threshold": 0.5,
+          "elapsed_seconds": 14.88
+        },
+        "contextual_relevancy": {
+          "score": 0.5,
+          "passed": true,
+          "reason": "The score is 0.50 because the retrieval context mentions addressing unauthorized assets (e.g., 'Ensure that a process exists to address unauthorized assets on a weekly basis') but lacks specific actionable steps for unauthorized devices, while the input asks for immediate actions when an unauthorized device appears on the network.",
+          "threshold": 0.5,
+          "elapsed_seconds": 35.47
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes (rank 1 and 2) are correctly ranked higher than any irrelevant nodes, ensuring perfect contextual precision.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.67
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence aligns perfectly with the 1st node in retrieval context, which specifies weekly process for unauthorized assets including removal, remote denial, or quarantine.",
+          "threshold": 0.5,
+          "elapsed_seconds": 8.01
+        }
+      }
+    },
+    {
+      "question": "What does CIS recommend for defending systems against malware?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, making it fully relevant to the input question about CIS malware defense recommendations.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.45
+        },
+        "faithfulness": {
+          "score": 0.0,
+          "passed": false,
+          "reason": "The score is 0.00 because there are no contradictions to justify a lower faithfulness score.",
+          "threshold": 0.5,
+          "elapsed_seconds": 16.3
+        },
+        "contextual_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the retrieval context directly provides CIS Controls v8's specific malware defense recommendations (e.g., deploying anti-malware software, configuring updates, disabling autorun, etc.) which perfectly align with the input's query about CIS recommendations for defending systems against malware.",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.69
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all four relevant nodes are ranked higher than any irrelevant nodes, with each 'yes' verdict providing a precise match to the input query in the order of ranking.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.17
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all expected output sentences (10.1-10.6) are fully supported by corresponding node(s) in retrieval context, with no unsupportive reasons detected.",
+          "threshold": 0.5,
+          "elapsed_seconds": 7.66
+        }
+      }
+    },
+    {
+      "question": "How should an enterprise prepare to recover its data after an incident?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it perfectly addresses the input question about enterprise data recovery preparation.",
+          "threshold": 0.5,
+          "elapsed_seconds": 11.57
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 16.9
+        },
+        "contextual_relevancy": {
+          "score": 0.9814814814814815,
+          "passed": true,
+          "reason": "The score is 0.98 because the retrieval context provides highly relevant statements about data recovery practices, ransomware impact, and incident response planning (e.g., 'CIS Controls v832 Control 11: Data Recovery 1: Establish and maintain data recovery practices sufficient to restore in-scope enterprise assets to a pre-incident and trusted state'), but the initial statement about 'weather information to a transportation enterprise' is irrelevant to the query.",
+          "threshold": 0.5,
+          "elapsed_seconds": 64.55
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all five nodes are relevant and ranked correctly, with no irrelevant nodes appearing before any relevant nodes.",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.68
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence aligns perfectly with the 1st node in retrieval context, which specifies establishing and maintaining data recovery practices for enterprise asset restoration.",
+          "threshold": 0.5,
+          "elapsed_seconds": 8.73
+        }
+      }
+    },
+    {
+      "question": "What is the purpose of an incident response process?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, making it fully relevant to the input question about the purpose of an incident response process.",
+          "threshold": 0.5,
+          "elapsed_seconds": 14.65
+        },
+        "faithfulness": {
+          "score": 0.3333333333333333,
+          "passed": false,
+          "reason": "The score is 0.33 because there are no contradictions reported, indicating the actual output aligns moderately with the retrieval context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 17.44
+        },
+        "contextual_relevancy": {
+          "score": 0.9743589743589743,
+          "passed": true,
+          "reason": "The score is 0.97 because the retrieval context includes highly relevant statements about establishing incident response processes, roles, communication plans, and post-incident reviews, which directly address the purpose of an incident response process, while the only irrelevant detail mentioned is about cloud environments and virtual machines being difficult to track, which does not impact the core purpose of incident response.",
+          "threshold": 0.5,
+          "elapsed_seconds": 54.66
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all five nodes are relevant and ranked correctly, with each 'yes' verdict node providing direct support for the input's purpose of incident response, ensuring no irrelevant nodes are ranked higher.",
+          "threshold": 0.5,
+          "elapsed_seconds": 15.38
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence (1) is fully supported by nodes 1-6 in the retrieval context, which collectively define incident response roles, responsibilities, communications, and procedures for consistent detection, response, and recovery.",
+          "threshold": 0.5,
+          "elapsed_seconds": 14.62
+        }
+      }
+    },
+    {
+      "question": "How should third-party service providers be managed?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, so it perfectly addresses the input question about managing third-party service providers.",
+          "threshold": 0.5,
+          "elapsed_seconds": 16.98
+        },
+        "faithfulness": {
+          "score": 0.8,
+          "passed": true,
+          "reason": "The score is 0.80 because there are no contradictions found between the actual output and the retrieval context, indicating high faithfulness with minor room for improvement.",
+          "threshold": 0.5,
+          "elapsed_seconds": 26.61
+        },
+        "contextual_relevancy": {
+          "score": 0.8717948717948718,
+          "passed": true,
+          "reason": "The score is 0.87 because the retrieval context provides relevant statements about third-party service provider management, such as CIS Controls v842 Control 15 and examples of third-party risks, but contains irrelevant information like NIST® 800-88r1 and security function tables that do not address the input.",
+          "threshold": 0.5,
+          "elapsed_seconds": 53.2
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all five nodes are relevant and ranked correctly, with each 'yes' verdict providing precise, ordered context that directly addresses third-party service provider management without any irrelevant nodes.",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.06
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence covers all critical aspects of service provider management, with each node in the retrieval context directly supporting the 1st, 3rd, 4th, 5th, and 6th sentences of the expected output, ensuring comprehensive alignment.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.92
+        }
+      }
+    },
+    {
+      "question": "How can an organization detect unusual network activity?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, making it fully relevant to the input question about detecting unusual network activity.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.42
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 19.0
+        },
+        "contextual_relevancy": {
+          "score": 0.984375,
+          "passed": true,
+          "reason": "The score is 0.98 because the retrieval context provides highly relevant statements about network monitoring, security operations, and threat detection, such as 'CIS Controls v836 Control 1: Network Monitoring and Defense' and 'Audit Log Management is critical for an enterprise’s ability to detect malicious activity quickly', which directly address the input's query on detecting unusual network activity, despite the standalone term 'CONTROL' being slightly irrelevant.",
+          "threshold": 0.5,
+          "elapsed_seconds": 66.52
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the only relevant node (rank 1) directly addresses the question about detecting unusual network activity through network monitoring and defense, while all irrelevant nodes (ranks 2-5) focus on unrelated topics like audit logs, application security, or general threat intelligence without specific detection methods.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.74
+        },
+        "contextual_recall": {
+          "score": 0.2,
+          "passed": false,
+          "reason": "The score is 0.20 because the expected output sentence (1) aligns with the 1st node in retrieval context, but the 2nd-5th nodes do not cover the traffic analysis, anomaly detection, or malicious activity aspects mentioned in the expected output.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.17
+        }
+      }
+    },
+    {
+      "question": "How should email and web browsers be protected?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, making it fully relevant to the input question about email and web browser protection.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.73
+        },
+        "faithfulness": {
+          "score": 0.75,
+          "passed": true,
+          "reason": "The score is 0.75 because the actual output incorrectly refers to Control 09 as 'Safeguards' when the context specifies it as a Control (specifically, Email and Web Browser Protections) under CIS Controls v8, indicating a misclassification that reduces faithfulness.",
+          "threshold": 0.5,
+          "elapsed_seconds": 18.33
+        },
+        "contextual_relevancy": {
+          "score": 0.6212121212121212,
+          "passed": true,
+          "reason": "The score is 0.62 because the retrieval context includes relevant statements about email and web browser protections (e.g., 'Web browsers and email clients are very common points of entry for attackers...'), but most of the context focuses on unrelated security controls like CIS Controls, MFA, and system administration, making it partially relevant but not fully aligned with the input question about email and web browser protection.",
+          "threshold": 0.5,
+          "elapsed_seconds": 100.69
+        },
+        "contextual_precision": {
+          "score": 0.95,
+          "passed": true,
+          "reason": "The score is 0.95 because the first four nodes are relevant (yes verdicts) but the fourth node is ranked lower than the fifth node, which is also a yes verdict. The fourth node is irrelevant as it focuses on access control management, while the fifth node provides specific safeguards that align with the query, so it should be ranked higher than the fourth node.",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.54
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all expected output sentences align perfectly with the retrieval context nodes: sentence 1 maps to node 1 and 3 (DNS filtering), sentence 2 maps to node 2 (browser/email controls), sentence 3 maps to node 4 (plugin restrictions), sentence 4 maps to node 5 (file type blocking), and sentence 5 maps to node 6 (anti-malware protections).",
+          "threshold": 0.5,
+          "elapsed_seconds": 13.64
+        }
+      }
+    },
+    {
+      "question": "Why is security awareness training necessary?",
+      "metrics": {
+        "answer_relevancy": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no irrelevant statements in the actual output, making it fully relevant to the input question about security awareness training necessity.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.19
+        },
+        "faithfulness": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because there are no contradictions between the actual output and the retrieval context, meaning the output is fully faithful to the context.",
+          "threshold": 0.5,
+          "elapsed_seconds": 16.37
+        },
+        "contextual_relevancy": {
+          "score": 0.631578947368421,
+          "passed": true,
+          "reason": "The score is 0.63 because the retrieval context includes relevant statements about security awareness training's role in addressing human vulnerabilities and social engineering risks, but most of the context focuses on technical controls, SIEM implementations, and situational awareness without directly explaining why security awareness training is necessary.",
+          "threshold": 0.5,
+          "elapsed_seconds": 96.56
+        },
+        "contextual_precision": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because all relevant nodes (1st to 4th) directly address security awareness training necessity with specific examples, while the 5th node (irrelevant) discusses network monitoring, which is not related to the input question.",
+          "threshold": 0.5,
+          "elapsed_seconds": 12.02
+        },
+        "contextual_recall": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The score is 1.00 because the expected output sentence (1) is fully supported by nodes 1-6 in retrieval context, which directly address security awareness training for social engineering, authentication, data handling, and human-focused risks.",
+          "threshold": 0.5,
+          "elapsed_seconds": 11.61
+        }
+      }
+    },
+    {
+      "question": "According to this document, what was the most common cyberattack in Lebanon in 2026?",
+      "metrics": {
+        "safe_abstention": {
+          "score": 1.0,
+          "passed": true,
+          "reason": "The response correctly states the lack of evidence without inventing information, aligning with step 1 and 3. It avoids unsupported claims (step 4) and does not introduce new facts (step 2), matching the expected output's abstention. The test case's question about Lebanon's 2026 cyberattacks is irrelevant to the CIS Controls document, which the response accurately identifies as lacking evidence.",
+          "threshold": 0.5,
+          "elapsed_seconds": 8.83
+        }
+      }
+    },
+    {
+      "question": "What is the current price of Bitcoin?",
+      "metrics": {
+        "safe_abstention": {
+          "score": 0.8,
+          "passed": true,
+          "reason": "The actual output correctly states the lack of evidence for Bitcoin price in CIS Controls and avoids inventing information, aligning with steps 1, 2, and 3. However, it mentions 'indexed CIS Controls document' which is not a standard term in the expected output, slightly deviating from the expected phrasing.",
+          "threshold": 0.5,
+          "elapsed_seconds": 10.74
+        }
+      }
+    }
+  ]
+}

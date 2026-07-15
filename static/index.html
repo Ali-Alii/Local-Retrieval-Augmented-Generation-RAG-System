@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sentinel — CIS Controls Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <style>
+    #evalDialog{max-width:720px;width:min(720px,calc(100vw - 32px))}.eval-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.eval-cards>div{background:#f4f6f1;border:1px solid #d9ddd4;border-radius:12px;padding:16px}.eval-cards strong,.eval-cards span{display:block}.eval-cards strong{font:700 24px Manrope;color:#176b52}.eval-cards span{font-size:10px;color:#68746e;margin-top:5px}#comparison table{width:100%;border-collapse:collapse;font-size:12px}#comparison th,#comparison td{text-align:left;border-bottom:1px solid #d9ddd4;padding:10px 7px}#comparison th{color:#176b52;text-transform:uppercase;font-size:9px;letter-spacing:1px}@media(max-width:620px){.eval-cards{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+  <div class="glow one"></div><div class="glow two"></div>
+  <div class="shell">
+    <aside>
+      <a class="brand"><span class="mark">S</span><span>Sentinel<small>CIS intelligence</small></span></a>
+      <nav><button class="active">⌁ <span>Ask Sentinel</span></button><button id="indexNav">◫ <span>Knowledge base</span></button><button id="evalNav">◎ <span>Evaluation</span></button></nav>
+      <div class="privacy"><span>●</span><strong>Private by design</strong><p>Models and documents stay on this machine.</p></div>
+      <div class="profile"><div>AI</div><span>Internal Ship<small>Local workspace</small></span><b>•••</b></div>
+    </aside>
+    <main>
+      <header><div><span class="eyebrow">SECURITY KNOWLEDGE WORKSPACE</span><h1>Ask the controls.<br><em>Get grounded answers.</em></h1></div><div id="health" class="health"><span></span> Loading index…</div></header>
+      <section class="hero">
+        <div class="orb"><div>⌁</div></div>
+        <h2>What would you like to understand?</h2>
+        <p>Explore CIS Controls v8 with answers traced directly to the source.</p>
+        <form id="askForm"><textarea id="question" maxlength="1000" placeholder="Ask about safeguards, implementation groups, asset management…" required></textarea><div class="composer-foot"><span><kbd>↵</kbd> Ask · <kbd>⇧ ↵</kbd> New line</span><button type="submit" aria-label="Send">→</button></div></form>
+        <div class="suggestions"><button>What is CIS Control 1?</button><button>How should accounts be managed?</button><button>Explain Implementation Groups</button></div>
+      </section>
+      <section id="answer" class="answer hidden"><div class="answer-head"><span>GROUNDED RESPONSE</span><b id="mode"></b></div><div id="answerText"></div><div id="sources" class="sources"></div><div class="feedback"><span>Was this useful?</span><button data-rating="up">↑</button><button data-rating="down">↓</button><small id="latency"></small></div></section>
+      <section class="metrics"><div><span>DOCUMENTS</span><strong id="documents">—</strong><small>local sources</small></div><div><span>KNOWLEDGE CHUNKS</span><strong id="chunks">—</strong><small>searchable passages</small></div><div><span>PIPELINE</span><strong>2-stage</strong><small>retrieve + rerank</small></div></section>
+    </main>
+  </div>
+  <dialog id="indexDialog"><button class="close">×</button><span class="eyebrow">KNOWLEDGE BASE</span><h2>Index your local documents</h2><p>Sentinel scans supported files in <code>data/</code>, chunks them with overlap, and only rebuilds when a source changes.</p><button id="ingest" class="primary">Build / sync index</button><pre id="ingestResult"></pre></dialog>
+  <dialog id="evalDialog"><button class="close">×</button><span class="eyebrow">GOLDEN DATASET</span><h2>Retrieval evaluation</h2><p>Measured quality on direct, paraphrased, scenario, and abstention questions.</p><div id="evalCards" class="eval-cards"></div><h3>Pipeline comparison</h3><div id="comparison"></div><h3>DeepEval · local Qwen judge</h3><div id="deepEvalCards" class="eval-cards"></div><p id="deepEvalNote"></p></dialog>
+  <div id="toast"></div><script src="/app.js"></script>
+</body></html>

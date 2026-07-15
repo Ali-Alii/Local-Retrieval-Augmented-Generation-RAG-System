@@ -1,0 +1,43 @@
+{
+  "parser": "unstructured-hi_res",
+  "source": "CIS_Controls__v8__Critical_Security_Controls__2023_08.pdf",
+  "elements": {
+    "elements": 2655,
+    "categories": {
+      "Header": 1,
+      "Image": 16,
+      "ListItem": 147,
+      "NarrativeText": 636,
+      "Table": 50,
+      "Text": 1487,
+      "Title": 318
+    },
+    "pages": 82,
+    "characters": 225616,
+    "average_element_characters": 85.1
+  },
+  "chunking": {
+    "recursive": {
+      "chunks": 2655,
+      "average_characters": 85.2,
+      "minimum_characters": 1,
+      "maximum_characters": 1795
+    },
+    "token": {
+      "chunks": 2654,
+      "average_characters": 85.4,
+      "minimum_characters": 1,
+      "maximum_characters": 2283
+    },
+    "by_title": {
+      "chunks": 332,
+      "average_characters": 691.0,
+      "minimum_characters": 13,
+      "maximum_characters": 1973
+    }
+  },
+  "selected_chunker": "by_title",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "embedding_dimensions": 384,
+  "elapsed_seconds": 894.35
+}
