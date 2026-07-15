@@ -2,6 +2,7 @@
   "summary": {
     "cases": 20,
     "judge": "qwen3:4b via local Ollama",
+    "evaluated_runtime": "compact",
     "threshold": 0.5,
     "metric_averages": {
       "answer_relevancy": 0.9782,

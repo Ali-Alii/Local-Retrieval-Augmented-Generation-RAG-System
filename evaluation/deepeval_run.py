@@ -126,6 +126,7 @@ def summarize(results: list[dict]) -> dict:
     return {
         "cases": len(results),
         "judge": "qwen3:4b via local Ollama",
+        "evaluated_runtime": "compact",
         "threshold": 0.5,
         "metric_averages": {name: round(mean(values), 4) for name, values in scores.items()},
         "metric_pass_rates": {

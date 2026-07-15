@@ -5,6 +5,7 @@
 - Framework: DeepEval 4.1.0
 - Dataset: 20 human-authored golden questions and reference answers
 - Judge: local `qwen3:4b` through Ollama, temperature 0, thinking disabled
+- Evaluated runtime: compact 127-chunk JSON/FastEmbed/MiniLM baseline
 - Threshold: 0.5 for every metric
 - Answerable cases: 18, each scored for Answer Relevancy, Faithfulness, Contextual Relevancy, Contextual Precision, and Contextual Recall
 - Unsupported cases: 2, scored with a Safe Abstention GEval criterion
@@ -49,4 +50,3 @@ Use `--refresh` only when new Sentinel outputs are required. Without it, the run
 - `deepeval_cases.json`: actual answers and retrieval context
 - `deepeval_report.json`: raw scores, pass/fail status, reasons, and latency
 - `deepeval_run.py`: offline, resumable evaluation runner
-
