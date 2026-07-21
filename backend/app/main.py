@@ -8,9 +8,11 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 
 from rag.engine import RAGEngine
 from .schemas import AskRequest, FeedbackRequest
+from .streaming import stream_rag_answer
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -31,19 +33,13 @@ async def lifespan(app: FastAPI):
         client.close()
 
 
-app = FastAPI(title="Sentinel RAG API", version="1.0.0", lifespan=lifespan)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app = FastAPI(title="Sentinel RAG API", version="1.1.0", lifespan=lifespan)
+app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 
 @app.get("/api/v1/health")
 async def health() -> dict:
-    return {"status": "ok", "service": "sentinel-api"}
+    return {"status": "ok", "service": "sentinel-api", "streaming": True}
 
 
 @app.get("/api/v1/status")
@@ -59,6 +55,15 @@ async def ask(payload: AskRequest, request: Request) -> dict:
         raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
+@app.post("/api/v1/ask/stream")
+async def ask_stream(payload: AskRequest, request: Request) -> StreamingResponse:
+    return StreamingResponse(
+        stream_rag_answer(request.app.state.engine, payload.question.strip()),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "Connection": "keep-alive", "X-Accel-Buffering": "no"},
+    )
+
+
 @app.post("/api/v1/feedback")
 async def feedback(payload: FeedbackRequest, request: Request) -> dict:
     await asyncio.to_thread(request.app.state.engine.feedback, payload.model_dump())
@@ -67,9 +72,5 @@ async def feedback(payload: FeedbackRequest, request: Request) -> dict:
 
 @app.get("/api/v1/evaluation")
 async def evaluation() -> dict:
-    paths = {
-        "retrieval": ROOT / "evaluation" / "latest_report.json",
-        "comparison": ROOT / "evaluation" / "comparison_report.json",
-        "deepeval": ROOT / "evaluation" / "deepeval_exact_report.json",
-    }
+    paths = {"retrieval": ROOT / "evaluation" / "latest_report.json", "comparison": ROOT / "evaluation" / "comparison_report.json", "deepeval": ROOT / "evaluation" / "deepeval_exact_report.json"}
     return {name: json.loads(path.read_text(encoding="utf-8")) if path.exists() else {} for name, path in paths.items()}
