@@ -18,23 +18,64 @@ export function ChatWorkspace() {
   const [meta, setMeta] = useState<StreamMeta | null>(null)
   const [error, setError] = useState('')
   const bottomRef = useRef<HTMLDivElement>(null)
+  const tokenQueueRef = useRef('')
+  const revealTimerRef = useRef<number | null>(null)
+  const pendingDoneRef = useRef<StreamMeta | null>(null)
   const loading = phase === 'retrieving' || phase === 'generating'
 
   useEffect(() => { sentinelApi.status().then(setStatus).catch(() => setError('Backend unavailable. Start the FastAPI server.')) }, [])
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }) }, [messages, phaseMessage])
+  useEffect(() => () => {
+    if (revealTimerRef.current !== null) window.clearTimeout(revealTimerRef.current)
+  }, [])
+
+  function completeStream(assistantId: string, result: StreamMeta) {
+    pendingDoneRef.current = null
+    setMeta(result)
+    setPhase('complete')
+    setPhaseMessage('')
+    setMessages((current) => current.map((message) => message.id === assistantId ? { ...message, label: result.mode.toUpperCase() } : message))
+  }
+
+  function startPacedReveal(assistantId: string) {
+    if (revealTimerRef.current !== null) return
+    const reveal = () => {
+      if (!tokenQueueRef.current) {
+        revealTimerRef.current = null
+        if (pendingDoneRef.current) completeStream(assistantId, pendingDoneRef.current)
+        return
+      }
+      const visible = tokenQueueRef.current.slice(0, 2)
+      tokenQueueRef.current = tokenQueueRef.current.slice(visible.length)
+      setMessages((current) => current.map((message) => message.id === assistantId ? { ...message, content: message.content + visible } : message))
+      revealTimerRef.current = window.setTimeout(reveal, 24)
+    }
+    revealTimerRef.current = window.setTimeout(reveal, 24)
+  }
 
   async function submit(event?: FormEvent) {
     event?.preventDefault()
     const value = question.trim()
     if (!value || loading) return
     const assistantId = `assistant-${Date.now()}`
+    tokenQueueRef.current = ''
+    pendingDoneRef.current = null
+    if (revealTimerRef.current !== null) window.clearTimeout(revealTimerRef.current)
+    revealTimerRef.current = null
     setMessages((current) => [...current, { id: `user-${Date.now()}`, role: 'user', content: value }, { id: assistantId, role: 'assistant', label: 'STREAMING', content: '' }])
     setQuestion(''); setError(''); setMeta(null); setPhase('retrieving'); setPhaseMessage('Connecting to the retrieval pipeline…')
     try {
       await sentinelApi.streamAsk(value, {
         onStatus: (next, message) => { setPhase(next as StreamPhase); setPhaseMessage(message) },
-        onToken: (token) => setMessages((current) => current.map((message) => message.id === assistantId ? { ...message, content: message.content + token } : message)),
-        onDone: (result) => { setMeta(result); setPhase('complete'); setPhaseMessage(''); setMessages((current) => current.map((message) => message.id === assistantId ? { ...message, label: result.mode.toUpperCase() } : message)) },
+        onToken: (token) => {
+          tokenQueueRef.current += token
+          startPacedReveal(assistantId)
+        },
+        onDone: (result) => {
+          pendingDoneRef.current = result
+          setPhaseMessage('Rendering the streamed answer...')
+          if (!tokenQueueRef.current && revealTimerRef.current === null) completeStream(assistantId, result)
+        },
       })
     } catch (cause) { setPhase('error'); setPhaseMessage(''); setError(cause instanceof Error ? cause.message : 'Streaming failed.') }
   }
