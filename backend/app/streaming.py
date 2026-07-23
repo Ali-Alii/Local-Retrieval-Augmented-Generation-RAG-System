@@ -49,6 +49,7 @@ async def stream_rag_answer(engine, question: str) -> AsyncIterator[str]:
     yield sse("status", {"phase": "retrieving", "message": "Searching and reranking CIS evidence…"})
     if unsupported(engine, question):
         refusal = "The indexed CIS Controls document does not contain enough evidence to answer that question. I won't infer or invent information beyond the provided source."
+        yield sse("sources", {"items": []})
         yield sse("token", {"content": refusal})
         yield sse("done", {"mode": "insufficient-evidence", "runtime": "exact", "latency_ms": round((time.perf_counter() - started) * 1000)})
         return
@@ -57,6 +58,10 @@ async def stream_rag_answer(engine, question: str) -> AsyncIterator[str]:
         if not sources:
             raise RuntimeError("No relevant evidence was found in the indexed document.")
         excerpts = engine.generation_contexts(question, sources)
+        yield sse("sources", {"items": [
+            {"source": source["source"], "page": source["page"], "text": excerpt, "score": source.get("score", 0)}
+            for source, excerpt in zip(sources[:3], excerpts)
+        ]})
         context = "\n\n".join(f"[Source {index}, page {source['page']}] {excerpt}" for index, (source, excerpt) in enumerate(zip(sources[:3], excerpts), 1))
         prompt = (
             "Answer only from the supplied CIS Controls context. Every factual statement must be directly supported by the context. "

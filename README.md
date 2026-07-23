@@ -9,7 +9,7 @@ The application adds a .NET 9 middle layer and MongoDB while retaining the exact
 ```text
 React :5173 -> .NET middleware :5100 -> Python FastAPI RAG :8000
                      |
-                     +-> MongoDB :27017 (users, sessions, audit logs)
+                     +-> MongoDB :27017 (users, sessions, conversations, feedback, audit logs)
 ```
 
 The browser authenticates with the middleware through Google OAuth and secure `HttpOnly` JWT cookies. Protected .NET proxy endpoints forward requests and SSE streams to Python. Any optional Python API key is read only inside the typed `RagApiClient`; it is never exposed to React. See [`middleware/README.md`](middleware/README.md) for configuration and the complete run sequence.
@@ -57,7 +57,11 @@ Compact mode uses pypdf, overlapping word chunks, FastEmbed BGE vectors in local
 | 2.6 Reranking | `BAAI/bge-reranker-v2-m3` adapter in `rag/exact_reranker.py` | MiniLM cross-encoder for lower CPU/RAM cost |
 | 2.7 Generation | Grounded prompt and local Qwen3:4b through Ollama | Same, with deterministic offline fallback |
 | 3.1 Evaluation | 20-case golden dataset, Hit@5, MRR@5, recall, abstention, ablation, and DeepEval | Results exposed in the Evaluation UI |
-| 3.2 HITL | Thumbs up/down feedback in local JSONL | Same |
+| 3.2 HITL | Thumbs up/down feedback persisted in MongoDB with reason and comment | Same |
+
+## Persistent chat experience (Day 4)
+
+The React client now loads a user's MongoDB-backed conversation list and restores complete threads after refresh. Each assistant message stores immutable response versions, source metadata, runtime, and latency. Users can regenerate an answer, switch between its versions, open citation tooltips and source details, and submit positive or reasoned negative feedback. A first-use guided tour introduces the workflow. See `docs/DAY4_PERSISTENCE.md` for the API flow and test checklist.
 
 The two paths are deliberate: the exact pipeline proves the specified stack, while the optimized path makes a responsive live demonstration possible on a laptop.
 

@@ -32,6 +32,7 @@ class StreamingTests(unittest.TestCase):
         async def collect(): return [item async for item in stream_rag_answer(UnsupportedEngine(), "live question")]
         events = asyncio.run(collect())
         self.assertIn("event: status", events[0])
+        self.assertTrue(any("event: sources" in event for event in events))
         self.assertTrue(any("event: token" in event for event in events))
         self.assertIn("event: done", events[-1])
 

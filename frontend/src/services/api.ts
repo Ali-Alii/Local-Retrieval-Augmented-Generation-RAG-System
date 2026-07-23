@@ -1,8 +1,8 @@
-import type { StreamMeta, SystemStatus, UserProfile } from '../types/rag'
+import type { Conversation, ConversationSummary, FeedbackPayload, PersistedResponse, Source, StreamMeta, SystemStatus, UserProfile } from '../types/rag'
 
 const MIDDLEWARE_URL = import.meta.env.VITE_MIDDLEWARE_URL ?? 'http://127.0.0.1:5100'
 const RAG_URL = `${MIDDLEWARE_URL}/api/rag`
-type Handlers = { onStatus: (phase: string, message: string) => void; onToken: (token: string) => void; onDone: (meta: StreamMeta) => void }
+type Handlers = { onStatus: (phase: string, message: string) => void; onSources: (sources: Source[]) => void; onToken: (token: string) => void; onPersisted: (meta: PersistedResponse) => void; onDone: (meta: StreamMeta) => void }
 
 async function errorFrom(response: Response): Promise<Error> {
   const body = await response.json().catch(() => ({}))
@@ -24,11 +24,12 @@ async function authenticatedFetch(url: string, init?: RequestInit): Promise<Resp
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await authenticatedFetch(url, init)
   if (!response.ok) throw await errorFrom(response)
+  if (response.status === 204) return undefined as T
   return response.json() as Promise<T>
 }
 
-async function streamAsk(question: string, handlers: Handlers): Promise<void> {
-  const response = await authenticatedFetch(`${RAG_URL}/query/stream`, { method: 'POST', headers: { Accept: 'text/event-stream' }, body: JSON.stringify({ question }) })
+async function streamAsk(question: string, conversationId: string, handlers: Handlers, assistantMessageId?: string): Promise<void> {
+  const response = await authenticatedFetch(`${RAG_URL}/query/stream`, { method: 'POST', headers: { Accept: 'text/event-stream' }, body: JSON.stringify({ question, conversationId, assistantMessageId }) })
   if (!response.ok || !response.body) throw await errorFrom(response)
   const reader = response.body.getReader()
   const decoder = new TextDecoder()
@@ -44,7 +45,9 @@ async function streamAsk(question: string, handlers: Handlers): Promise<void> {
       if (!event || !raw) continue
       const data = JSON.parse(raw)
       if (event === 'status') handlers.onStatus(data.phase, data.message)
+      else if (event === 'sources') handlers.onSources(data.items)
       else if (event === 'token') handlers.onToken(data.content)
+      else if (event === 'persisted') handlers.onPersisted(data)
       else if (event === 'done') handlers.onDone(data)
       else if (event === 'error') throw new Error(data.message)
     }
@@ -53,6 +56,13 @@ async function streamAsk(question: string, handlers: Handlers): Promise<void> {
 }
 
 export const sentinelApi = { status: () => request<SystemStatus>(`${RAG_URL}/status`), streamAsk }
+export const conversationsApi = {
+  list: () => request<ConversationSummary[]>(`${MIDDLEWARE_URL}/api/conversations`),
+  create: (title: string) => request<Conversation>(`${MIDDLEWARE_URL}/api/conversations`, { method: 'POST', body: JSON.stringify({ title }) }),
+  get: (id: string) => request<Conversation>(`${MIDDLEWARE_URL}/api/conversations/${id}`),
+  setActiveVersion: (conversationId: string, messageId: string, versionId: string) => request<void>(`${MIDDLEWARE_URL}/api/conversations/${conversationId}/messages/${messageId}/active-version`, { method: 'PUT', body: JSON.stringify({ versionId }) }),
+}
+export const feedbackApi = { submit: (payload: FeedbackPayload) => request(`${MIDDLEWARE_URL}/api/feedback`, { method: 'POST', body: JSON.stringify(payload) }) }
 export const authApi = {
   me: () => request<UserProfile>(`${MIDDLEWARE_URL}/api/auth/me`),
   developmentLogin: () => request<UserProfile>(`${MIDDLEWARE_URL}/api/auth/development`, { method: 'POST' }),

@@ -44,7 +44,24 @@ public interface ITokenService
     Task RevokeAsync(string refreshToken, CancellationToken cancellationToken);
 }
 
+public interface IConversationRepository
+{
+    Task<Conversation> CreateAsync(string userId, string title, CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<ConversationSummary>> ListAsync(string userId, CancellationToken cancellationToken);
+    Task<Conversation?> GetAsync(string id, string userId, CancellationToken cancellationToken);
+    Task<PersistedResponse> AddExchangeAsync(string conversationId, string userId, string question, ResponseVersion version, CancellationToken cancellationToken);
+    Task<PersistedResponse?> AddVersionAsync(string conversationId, string userId, string messageId, ResponseVersion version, CancellationToken cancellationToken);
+    Task<bool> SetActiveVersionAsync(string conversationId, string userId, string messageId, string versionId, CancellationToken cancellationToken);
+}
+
+public interface IFeedbackRepository
+{
+    Task<ResponseFeedback> UpsertAsync(ResponseFeedback feedback, CancellationToken cancellationToken);
+}
+
 public sealed record GoogleProfile(string Subject, string Email, string DisplayName, string? AvatarUrl);
 public sealed record SessionTokens(string AccessToken, DateTime AccessExpiresAtUtc, string RefreshToken, DateTime RefreshExpiresAtUtc);
 public sealed record UserProfile(string Id, string Email, string DisplayName, string? AvatarUrl, IReadOnlyCollection<string> Roles);
 public sealed record PagedResult<T>(IReadOnlyCollection<T> Items, long Total, int Page, int PageSize);
+public sealed record ConversationSummary(string Id, string Title, DateTime UpdatedAtUtc, int MessageCount);
+public sealed record PersistedResponse(string ConversationId, string MessageId, string VersionId);

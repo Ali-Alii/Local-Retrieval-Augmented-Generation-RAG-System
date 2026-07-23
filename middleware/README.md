@@ -5,7 +5,7 @@ The middleware is the security boundary between React and the Python RAG API.
 ```text
 React (5173) -> .NET middleware (5100) -> Python FastAPI RAG (8000)
                          |
-                         +-> MongoDB (27017): users, refresh sessions, audit logs
+                         +-> MongoDB (27017): users, sessions, conversations, feedback, audit logs
 ```
 
 ## Responsibilities
@@ -15,7 +15,7 @@ React (5173) -> .NET middleware (5100) -> Python FastAPI RAG (8000)
 - Rotating refresh tokens stored as SHA-256 hashes
 - Protected proxy endpoints with SSE passthrough
 - Python RAG credentials attached only by `RagApiClient`
-- MongoDB user/session/audit persistence
+- MongoDB user, session, conversation, response-version, feedback, and audit persistence
 - Request audit middleware, rate limiting, safe errors, CORS, and Swagger
 
 ## Local configuration
@@ -74,8 +74,12 @@ No value from this table is returned to React, serialized into API responses, or
 - `GET /api/auth/me`, `POST /api/auth/refresh`, `POST /api/auth/logout`
 - `GET /api/rag/status`
 - `POST /api/rag/query`
-- `POST /api/rag/query/stream` - SSE passthrough
+- `POST /api/rag/query/stream` - SSE passthrough plus conversation/version persistence
 - `GET /api/rag/evaluation`, `POST /api/rag/feedback`
+- `GET|POST /api/conversations` - list and create chat threads
+- `GET /api/conversations/{id}` - restore a complete thread
+- `PUT /api/conversations/{id}/messages/{messageId}/active-version` - select a response version
+- `POST /api/feedback` - persist thumbs up/down, reason, and optional comment
 - `GET /api/admin/audit-logs` - `Admin` role only
 
 ## Production plan
