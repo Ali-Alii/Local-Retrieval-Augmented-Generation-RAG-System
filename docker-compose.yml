@@ -1,4 +1,12 @@
 services:
+  mongodb:
+    image: mongo:8.0
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
   weaviate:
     image: cr.weaviate.io/semitechnologies/weaviate:1.38.2
     restart: unless-stopped
@@ -18,3 +26,4 @@ services:
 
 volumes:
   weaviate_data:
+  mongodb_data:

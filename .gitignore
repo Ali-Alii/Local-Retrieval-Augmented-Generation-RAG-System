@@ -6,6 +6,8 @@ __pycache__/
 # Distribution / packaging
 build/
 dist/
+**/bin/
+**/obj/
 *.egg-info/
 *.egg
 .eggs/
@@ -24,6 +26,8 @@ ENV/
 .env.*
 !.env.example
 *.key
+middleware/**/appsettings.Development.json
+!middleware/**/appsettings.Development.example.json
 
 # Testing / coverage
 .pytest_cache/
