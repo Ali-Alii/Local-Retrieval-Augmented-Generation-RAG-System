@@ -4,3 +4,4 @@ export type SystemStatus = { documents: number; chunks: number; vectors: number;
 export type StreamPhase = 'idle' | 'retrieving' | 'generating' | 'complete' | 'error'
 export type StreamMeta = Pick<RagAnswer, 'mode' | 'runtime' | 'latency_ms'>
 export type ChatMessage = { id: string; role: 'user' | 'assistant'; content: string; label?: string }
+export type UserProfile = { id: string; email: string; displayName: string; avatarUrl?: string; roles: string[] }

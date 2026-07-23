@@ -1,32 +1,31 @@
-# React + TypeScript + Vite
+# Sentinel React Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React 19 + TypeScript + Vite + Tailwind chat client for Sentinel. The browser communicates only with the .NET middleware; it never calls the Python RAG API directly.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```powershell
+Copy-Item .env.example .env.local
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Open `http://127.0.0.1:5173`.
+
+`VITE_MIDDLEWARE_URL` defaults to `http://127.0.0.1:5100`. Authentication uses secure `HttpOnly` cookies. `VITE_ENABLE_DEV_LOGIN=true` displays the local-login button for development; production should omit it.
+
+## Flow
+
+```text
+ChatWorkspace -> services/api.ts -> .NET middleware -> Python RAG
+                                      <- SSE stream <-
+```
+
+The client handles session refresh, SSE status/token/done/error events, Markdown rendering, loading state, paced token display, and auto-scroll.
+
+## Validation
+
+```powershell
+npm run lint
+npm run build
+```

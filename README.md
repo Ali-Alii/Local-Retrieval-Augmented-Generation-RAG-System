@@ -2,6 +2,18 @@
 
 Sentinel is a private, source-grounded RAG workspace for the supplied CIS Controls v8 PDF. It completes internship tasks 2.1–2.7 and 3.1–3.2: structured parsing, chunk comparison, embeddings, vector storage, ingestion, reranking, grounded generation, evaluation, and human feedback.
 
+## Secure application architecture
+
+The application adds a .NET 9 middle layer and MongoDB while retaining the exact Python RAG pipeline:
+
+```text
+React :5173 -> .NET middleware :5100 -> Python FastAPI RAG :8000
+                     |
+                     +-> MongoDB :27017 (users, sessions, audit logs)
+```
+
+The browser authenticates with the middleware through Google OAuth and secure `HttpOnly` JWT cookies. Protected .NET proxy endpoints forward requests and SSE streams to Python. Any optional Python API key is read only inside the typed `RagApiClient`; it is never exposed to React. See [`middleware/README.md`](middleware/README.md) for configuration and the complete run sequence.
+
 ## Quick start
 
 Requirements: Python 3.12, `uv`, Docker Desktop, Poppler, Tesseract, and Ollama with `qwen3:4b` for fluent local generation.
