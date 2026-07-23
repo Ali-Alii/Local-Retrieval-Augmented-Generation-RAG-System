@@ -133,9 +133,17 @@ export function ChatWorkspace() {
 
   async function submitFeedback(messageId: string, versionId: string, rating: 'up' | 'down', reason?: string, comment?: string) {
     if (!activeConversationId) return
-    const payload: FeedbackPayload = { conversationId: activeConversationId, messageId, versionId, rating, reason, comment }
-    await feedbackApi.submit(payload)
-    setNotice(rating === 'up' ? 'Thanks—your positive feedback was saved.' : 'Thanks—your feedback was saved for review.')
+    try {
+      const payload: FeedbackPayload = { conversationId: activeConversationId, messageId, versionId, rating, reason, comment }
+      await feedbackApi.submit(payload)
+      setError('')
+      setNotice(rating === 'up' ? 'Thanks—your positive feedback was saved.' : 'Thanks—your feedback was saved for review.')
+      window.setTimeout(() => setNotice(''), 3500)
+    } catch (cause) {
+      const message = cause instanceof Error ? cause.message : 'Feedback could not be saved.'
+      setError(message)
+      throw cause
+    }
   }
 
   function newConversation() { setActiveConversationId(null); setMessages([welcome]); setMeta(null); setError(''); setNotice('') }
@@ -150,5 +158,5 @@ export function ChatWorkspace() {
         <div className="sticky bottom-0 bg-gradient-to-t from-stone-100 via-stone-100 to-transparent pb-4 pt-8"><div className="mb-3 flex flex-wrap gap-2">{suggestions.map((item) => <button key={item} onClick={() => setQuestion(item)} disabled={!user} className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs text-stone-600 hover:border-emerald-300 disabled:opacity-50">{item}</button>)}</div><form onSubmit={submit} className="rounded-3xl border border-stone-200 bg-white p-4 shadow-xl shadow-stone-900/5"><label htmlFor="rag-question" className="sr-only">Ask a CIS Controls question</label><textarea id="rag-question" value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={handleKeyDown} disabled={loading || !user} maxLength={1000} placeholder={user ? 'Ask a CIS Controls question…' : 'Sign in to ask a question'} className="min-h-20 w-full resize-none bg-transparent outline-none placeholder:text-stone-400 focus-visible:ring-2 focus-visible:ring-emerald-500 disabled:opacity-60" /><div className="flex items-center justify-between"><span className="text-xs text-stone-400">Enter to send · Shift + Enter for new line</span><Button disabled={loading || !user} aria-label="Send question">{loading ? <LoaderCircle className="animate-spin" /> : <ArrowUp />}</Button></div></form></div>
       </div>
     </section>
-  </div>{user && <GuidedTour />}</main></Tooltip.Provider>
+  </div>{notice && <div role="status" className="fixed bottom-6 right-6 z-50 rounded-2xl bg-emerald-800 px-5 py-3 font-semibold text-white shadow-2xl">✓ {notice}</div>}{user && <GuidedTour />}</main></Tooltip.Provider>
 }
