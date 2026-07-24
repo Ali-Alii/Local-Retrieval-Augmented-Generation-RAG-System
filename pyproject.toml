@@ -18,6 +18,7 @@ dependencies = [
     "langchain-weaviate>=0.0.6",
     "notebook>=7.5.6",
     "ollama>=0.6.2",
+    "python-pptx>=1.0.2",
     "sentence-transformers>=5.5.1",
     "tiktoken>=0.13.0",
     "unstructured[pdf]>=0.22.31",
