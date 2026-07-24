@@ -8,11 +8,11 @@ using RagMiddleware.Application;
 namespace RagMiddleware.Api.Controllers;
 
 [ApiController]
-[EnableRateLimiting("auth")]
 [Route("api/auth")]
 public sealed class AuthController(IUserRepository users, ITokenService tokens, IConfiguration configuration, IWebHostEnvironment environment, FrontendOptions frontend) : ControllerBase
 {
     [AllowAnonymous]
+    [EnableRateLimiting("auth")]
     [HttpGet("login/google")]
     public IActionResult GoogleLogin()
     {
@@ -21,6 +21,7 @@ public sealed class AuthController(IUserRepository users, ITokenService tokens, 
     }
 
     [AllowAnonymous]
+    [EnableRateLimiting("auth")]
     [HttpGet("google/callback")]
     public async Task<IActionResult> GoogleCallback(CancellationToken cancellationToken)
     {
@@ -36,6 +37,7 @@ public sealed class AuthController(IUserRepository users, ITokenService tokens, 
     }
 
     [AllowAnonymous]
+    [EnableRateLimiting("auth")]
     [HttpPost("development")]
     public async Task<IActionResult> DevelopmentLogin(CancellationToken cancellationToken)
     {
@@ -55,6 +57,7 @@ public sealed class AuthController(IUserRepository users, ITokenService tokens, 
     }
 
     [AllowAnonymous]
+    [EnableRateLimiting("auth")]
     [HttpPost("refresh")]
     public async Task<IActionResult> Refresh(CancellationToken cancellationToken)
     {

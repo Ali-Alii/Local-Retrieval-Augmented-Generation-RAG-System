@@ -4,6 +4,7 @@ import * as Tooltip from '@radix-ui/react-tooltip'
 import { Button } from '../../components/ui/Button'
 import { authApi, conversationsApi, feedbackApi, sentinelApi } from '../../services/api'
 import type { ChatMessage, ConversationSummary, FeedbackPayload, StreamMeta, StreamPhase, SystemStatus, UserProfile } from '../../types/rag'
+import { LoginScreen } from '../auth/LoginScreen'
 import { GuidedTour } from './GuidedTour'
 import { MessageBubble } from './MessageBubble'
 import { ThreadList } from './ThreadList'
@@ -23,6 +24,7 @@ export function ChatWorkspace() {
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
   const [user, setUser] = useState<UserProfile | null>(null)
+  const [authReady, setAuthReady] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
   const tokenQueueRef = useRef('')
   const revealTimerRef = useRef<number | null>(null)
@@ -50,7 +52,7 @@ export function ChatWorkspace() {
       const [nextStatus, list] = await Promise.all([sentinelApi.status(), refreshThreads()])
       setStatus(nextStatus)
       if (list[0]) await openConversation(list[0].id)
-    }).catch(() => setError('Sign in to access the protected RAG workspace.'))
+    }).catch(() => setError('Your session is not active. Sign in to continue.')).finally(() => setAuthReady(true))
   }, [])
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }) }, [messages, phaseMessage])
   useEffect(() => () => { if (revealTimerRef.current !== null) window.clearTimeout(revealTimerRef.current) }, [])
@@ -150,6 +152,9 @@ export function ChatWorkspace() {
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); void submit() } }
   async function developmentLogin() { try { const profile = await authApi.developmentLogin(); setUser(profile); setStatus(await sentinelApi.status()); const list = await refreshThreads(); if (list[0]) await openConversation(list[0].id); setError('') } catch (cause) { setError(cause instanceof Error ? cause.message : 'Development login failed.') } }
   async function logout() { await authApi.logout(); setUser(null); setStatus(null); setThreads([]); newConversation(); setError('Sign in to access the protected RAG workspace.') }
+
+  if (!authReady) return <main className="grid min-h-screen place-items-center bg-[#0d3028] text-white"><div className="text-center"><div className="mx-auto grid size-14 place-items-center rounded-2xl border border-emerald-300/30 text-2xl font-bold text-lime-300">S</div><p className="mt-4 animate-pulse text-sm text-emerald-100">Opening your secure workspace…</p></div></main>
+  if (!user) return <LoginScreen error={error} googleUrl={authApi.googleLoginUrl} developmentEnabled={import.meta.env.VITE_ENABLE_DEV_LOGIN === 'true'} onDevelopmentLogin={() => void developmentLogin()} />
 
   return <Tooltip.Provider><main className="min-h-screen bg-[radial-gradient(circle_at_top_right,#ecfccb_0,transparent_30%),linear-gradient(135deg,#fafaf9,#f5f5f4)] text-stone-900"><div className="mx-auto grid min-h-screen max-w-[1600px] lg:grid-cols-[280px_1fr]">
     <aside className="flex flex-col bg-[#0d3028] p-7 text-white"><div className="flex items-center gap-3"><div className="grid size-12 place-items-center rounded-2xl border border-emerald-300/30 text-xl font-bold text-lime-300">S</div><div><h1 className="text-2xl font-bold">Sentinel</h1><p className="text-xs tracking-[.18em] text-emerald-200">CIS INTELLIGENCE</p></div></div><ThreadList threads={threads} activeId={activeConversationId} onNew={newConversation} onSelect={(id) => void openConversation(id)} /><Tooltip.Root><Tooltip.Trigger asChild><div className="mt-auto rounded-2xl border border-emerald-300/20 bg-white/5 p-4"><p className="flex items-center gap-2 font-semibold"><ShieldCheck size={18} className="text-lime-300" /> Private by design</p><p className="mt-2 text-sm leading-6 text-emerald-100">Models and documents stay on this machine.</p></div></Tooltip.Trigger><Tooltip.Portal><Tooltip.Content className="rounded-lg bg-stone-900 px-3 py-2 text-xs text-white" side="right">No cloud model API required.</Tooltip.Content></Tooltip.Portal></Tooltip.Root></aside>
