@@ -1,0 +1,12 @@
+export type Source = { index?: number; source: string; page: number; text: string; score: number }
+export type RagAnswer = { answer: string; mode: string; runtime: string; latency_ms: number; sources: Source[] }
+export type SystemStatus = { documents: number; chunks: number; vectors: number; runtime: string; reranker: string; pipeline: string }
+export type StreamPhase = 'idle' | 'retrieving' | 'generating' | 'complete' | 'error'
+export type StreamMeta = Pick<RagAnswer, 'mode' | 'runtime' | 'latency_ms'>
+export type ResponseVersion = { id: string; content: string; mode: string; runtime: string; latencyMs: number; sources: Source[]; createdAtUtc: string }
+export type ChatMessage = { id: string; role: 'user' | 'assistant'; content: string; label?: string; versions?: ResponseVersion[]; activeVersionId?: string; createdAtUtc?: string }
+export type UserProfile = { id: string; email: string; displayName: string; avatarUrl?: string; roles: string[] }
+export type ConversationSummary = { id: string; title: string; updatedAtUtc: string; messageCount: number }
+export type Conversation = { id: string; title: string; messages: ChatMessage[]; createdAtUtc: string; updatedAtUtc: string }
+export type PersistedResponse = { conversationId: string; messageId: string; versionId: string }
+export type FeedbackPayload = { conversationId: string; messageId: string; versionId: string; rating: 'up' | 'down'; reason?: string; comment?: string }

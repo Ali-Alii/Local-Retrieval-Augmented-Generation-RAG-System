@@ -1,0 +1,6 @@
+import { MessageSquarePlus } from 'lucide-react'
+import type { ConversationSummary } from '../../types/rag'
+
+export function ThreadList({ threads, activeId, onSelect, onNew }: { threads: ConversationSummary[]; activeId: string | null; onSelect: (id: string) => void; onNew: () => void }) {
+  return <section className="mt-8 min-h-0 flex-1"><button type="button" onClick={onNew} className="flex w-full items-center justify-center gap-2 rounded-xl bg-lime-300 px-3 py-3 text-sm font-bold text-emerald-950"><MessageSquarePlus size={17} />New conversation</button><h2 className="mt-6 text-xs font-bold tracking-[.16em] text-emerald-200">RECENT THREADS</h2><div className="mt-3 max-h-[42vh] space-y-2 overflow-y-auto pr-1">{threads.length === 0 && <p className="text-sm text-emerald-100/70">Your saved conversations will appear here.</p>}{threads.map((thread) => <button type="button" key={thread.id} onClick={() => onSelect(thread.id)} className={`w-full rounded-xl px-3 py-3 text-left transition ${activeId === thread.id ? 'bg-white/15 text-white' : 'text-emerald-100 hover:bg-white/10'}`}><span className="line-clamp-2 text-sm font-semibold">{thread.title}</span><span className="mt-1 block text-[11px] text-emerald-200/70">{thread.messageCount} messages</span></button>)}</div></section>
+}
